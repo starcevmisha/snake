@@ -59,6 +59,10 @@ public class SnakeGame {
                             direction = Direction.Right;
                         break;
 
+                    case KeyEvent.VK_P:
+                        isPaused = !isPaused;
+                        break;
+
                     case KeyEvent.VK_ENTER:
                         if(isgameOver) {
                             resetGame();
@@ -80,8 +84,9 @@ public class SnakeGame {
         snake = new Snake(10, 10, 5, direction);
         food = new Food();
 
-        while (!isgameOver && !isPaused){
-            snake.Move(direction);
+        while (!isgameOver){
+            if (!isPaused)
+                snake.Move(direction);
             Point oldPointFood = new Point((int)food.getX(), (int)food.getY());
             if (food.isEaten(snake)) {
                 score += 1;
