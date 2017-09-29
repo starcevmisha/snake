@@ -6,26 +6,31 @@ import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 
 public class SnakeGame {
-    static final int WIDTH = 30;
-    static final int HEIGHT = 30;
+    static final int WIDTH = 20;
+    static final int HEIGHT = 20;
     static final int CELL_SIZE = 20;
-    static boolean isgameOver = false;
+    public static boolean isgameOver = false;
+    public static boolean isPaused = false;
     private Direction direction = Direction.Right;
+    public Snake snake;
+    public Food food;
+    public int score = 0;
+
+
     public static void main(String[] args) {
         new SnakeGame().run();
     }
-    public Snake snake;
-    public Food food;
+
 
     void run(){
-        JFrame myWindow = new JFrame("Snake");
+        JFrame myWindow = new JFrame("Snake. Score : 0");
         myWindow.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        myWindow.setSize(WIDTH * CELL_SIZE+18, HEIGHT * CELL_SIZE + 28);
+        myWindow.setSize(WIDTH * CELL_SIZE+218, HEIGHT * CELL_SIZE + 40);
         myWindow.setLocation(200, 100);
         myWindow.setResizable(false);
-        myWindow.setVisible(true);
+        myWindow.setVisible(true);//Создание окна
 
-        myWindow.addKeyListener(new KeyAdapter() {
+        myWindow.addKeyListener(new KeyAdapter() {//Обработка клавиш
             @Override
             public void keyPressed(KeyEvent e) {
                 switch(e.getKeyCode())
@@ -49,35 +54,52 @@ public class SnakeGame {
                     case KeyEvent.VK_RIGHT:
                         direction = Direction.Right;
                         break;
+
+                    case KeyEvent.VK_ENTER:
+                        if(isgameOver) {
+                            resetGame();
+                        }
+                        break;
+
                 }
             }
         });
 
-        Layout layout = new Layout();
-        layout.setBackground(Color.yellow);
 
-        myWindow.getContentPane().add(BorderLayout.CENTER, layout);
+        MainLayout mainLayout = new MainLayout(this);
+        mainLayout.setBackground(Color.yellow);
+
+        InfoLayout infoLayout = new InfoLayout(this);
+        infoLayout.setBackground(Color.black);
+
+        myWindow.getContentPane().add(BorderLayout.CENTER, mainLayout);
+        myWindow.getContentPane().add(BorderLayout.EAST, infoLayout);//Создание слоёв
 
 
         snake = new Snake(10, 10, 5, direction);
         food = new Food();
-        while (!isgameOver){
+
+        while (!isgameOver && !isPaused){
             snake.Move(direction);
-            layout.repaint();
+            Point oldPointFood = new Point((int)food.getX(), (int)food.getY());
+            if (food.isEaten(snake)) {
+                score += 1;
+                snake.extend(oldPointFood);
+                myWindow.setTitle("Snake. Score : " + score);
+            }
+            mainLayout.repaint();
+            infoLayout.repaint();
             try {
                 Thread.sleep(150);
             } catch (InterruptedException e) { e.printStackTrace(); }
         }
 
-
     }
-    public class Layout extends JPanel {
-        @Override
-        public void paint(Graphics g) {
-            super.paint(g);
-            snake.paint(g);
-            food.paint(g);
-        }
+    private void resetGame() {
+        snake = new Snake(10, 10, 5, direction);
+        food.NextFood(snake);
+        isgameOver = false;
     }
 
 }
+

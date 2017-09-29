@@ -4,24 +4,30 @@ import java.awt.*;
 import java.util.ArrayList;
 
 public class Snake{
-    ArrayList<MyPoint> snake = new ArrayList<MyPoint>();
+    private ArrayList<Point> snake = new ArrayList<Point>();
     Direction lastDirection = Direction.Right;
 
 
     public Snake(int x, int y, int length, Direction direction) {
         for (int i = 0; i < length; i++) {
-            MyPoint point = new MyPoint(x-i, y);
+            Point point = new Point(x-i, y);
             snake.add(point);
         }
         this.lastDirection = direction;
     }
+    public ArrayList<Point> getSnakeBody(){
+        return snake;
+    }
 
     public boolean isIntersectWithSnake(int x, int y){
-        for (MyPoint point:snake){
-            if (point.getX() == x && point.getY() == y)
+        for (Point point:snake){
+            if ((int)point.getX() == x && (int)point.getY() == y)
                 return true;
         }
         return false;
+    }
+    public void extend(Point point){
+        snake.add(0, point);
     }
 
     public void Move(Direction direction){
@@ -45,14 +51,7 @@ public class Snake{
         if (y <= -1)
             y = SnakeGame.HEIGHT - 1;
         SnakeGame.isgameOver = isIntersectWithSnake(x,y);
-        snake.add(0, new MyPoint(x, y));
+        snake.add(0, new Point(x, y));
         snake.remove(snake.size() - 1);
     }
-
-    void paint(Graphics g) {
-        for (MyPoint point : snake) {
-            point.paint(g);
-        }
-    }
-
 }
