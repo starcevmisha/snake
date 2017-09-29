@@ -50,8 +50,6 @@ public class MainLayout extends JPanel {
         g.setColor(color);
         g.fillArc(p.x*SnakeGame.CELL_SIZE, p.y*SnakeGame.CELL_SIZE,
                 SnakeGame.CELL_SIZE/2, SnakeGame.CELL_SIZE/2,0,360);
-//        g.setColor(Color.GRAY);
-//        g.drawRect(p.x*SnakeGame.CELL_SIZE, p.y*SnakeGame.CELL_SIZE,
-//                SnakeGame.CELL_SIZE, SnakeGame.CELL_SIZE);
+
     }
 }
