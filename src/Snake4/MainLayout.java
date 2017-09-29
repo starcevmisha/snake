@@ -14,10 +14,19 @@ public class MainLayout extends JPanel {
     @Override
     public void paint(Graphics g) {
         super.paint(g);
-
-        for (Point point : game.snake.getSnakeBody()) {
-            paint_point(g, point, Color.black);
+        for(int x=0;x<game.WIDTH;x++){
+            for(int y=0;y<game.HEIGHT;y++){
+                g.setColor(Color.DARK_GRAY);
+                g.drawRect(x*SnakeGame.CELL_SIZE, y*SnakeGame.CELL_SIZE,
+                        SnakeGame.CELL_SIZE, SnakeGame.CELL_SIZE);
+            }
         }
+        for (Point point : game.snake.getSnakeBody()) {
+            paint_point(g, point, Color.GREEN);
+        }
+        paint_circle(g, game.snake.getSnakeBody().get(0), Color.black);
+
+
         paint_point(g, game.food, Color.magenta);
 
         if (game.isgameOver) {
@@ -33,8 +42,16 @@ public class MainLayout extends JPanel {
         g.setColor(color);
         g.fillRect(p.x*SnakeGame.CELL_SIZE, p.y*SnakeGame.CELL_SIZE,
                 SnakeGame.CELL_SIZE, SnakeGame.CELL_SIZE);
-        g.setColor(Color.white);
+        g.setColor(Color.GRAY);
         g.drawRect(p.x*SnakeGame.CELL_SIZE, p.y*SnakeGame.CELL_SIZE,
                 SnakeGame.CELL_SIZE, SnakeGame.CELL_SIZE);
+    }
+    void paint_circle(Graphics g, Point p, Color color){
+        g.setColor(color);
+        g.fillArc(p.x*SnakeGame.CELL_SIZE, p.y*SnakeGame.CELL_SIZE,
+                SnakeGame.CELL_SIZE/2, SnakeGame.CELL_SIZE/2,0,360);
+//        g.setColor(Color.GRAY);
+//        g.drawRect(p.x*SnakeGame.CELL_SIZE, p.y*SnakeGame.CELL_SIZE,
+//                SnakeGame.CELL_SIZE, SnakeGame.CELL_SIZE);
     }
 }

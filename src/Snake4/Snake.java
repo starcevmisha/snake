@@ -5,7 +5,6 @@ import java.util.ArrayList;
 
 public class Snake{
     private ArrayList<Point> snake = new ArrayList<Point>();
-    Direction lastDirection = Direction.Right;
 
 
     public Snake(int x, int y, int length, Direction direction) {
@@ -13,7 +12,6 @@ public class Snake{
             Point point = new Point(x-i, y);
             snake.add(point);
         }
-        this.lastDirection = direction;
     }
     public ArrayList<Point> getSnakeBody(){
         return snake;
@@ -33,15 +31,14 @@ public class Snake{
     public void Move(Direction direction){
         int x = (int)snake.get(0).getX();
         int y = (int)snake.get(0).getY();
-        if(direction == Direction.Up && lastDirection != Direction.Down)
+        if(direction == Direction.Up)
             y--;
-        if (direction == Direction.Right && lastDirection != Direction.Left)
+        if (direction == Direction.Right)
             x++;
-        if (direction == Direction.Down && lastDirection != Direction.Up)
+        if (direction == Direction.Down)
             y++;
-        if (direction == Direction.Left && lastDirection != Direction.Right)
+        if (direction == Direction.Left)
             x--;
-        this.lastDirection = direction;
         if (x >= SnakeGame.WIDTH)
             x = 0;
         if (x <= -1)

@@ -37,22 +37,26 @@ public class SnakeGame {
                 {
                     case KeyEvent.VK_W:
                     case KeyEvent.VK_UP:
-                        direction = Direction.Up;
+                        if (direction!=Direction.Down)
+                            direction = Direction.Up;
                         break;
 
                     case KeyEvent.VK_S:
                     case KeyEvent.VK_DOWN:
-                        direction = Direction.Down;
+                        if (direction!=Direction.Up)
+                            direction = Direction.Down;
                         break;
 
                     case KeyEvent.VK_A:
                     case KeyEvent.VK_LEFT:
-                        direction = Direction.Left;
+                        if (direction!=Direction.Right)
+                            direction = Direction.Left;
                         break;
 
                     case KeyEvent.VK_D:
                     case KeyEvent.VK_RIGHT:
-                        direction = Direction.Right;
+                        if (direction!=Direction.Left)
+                            direction = Direction.Right;
                         break;
 
                     case KeyEvent.VK_ENTER:
@@ -67,10 +71,7 @@ public class SnakeGame {
 
 
         MainLayout mainLayout = new MainLayout(this);
-        mainLayout.setBackground(Color.yellow);
-
         InfoLayout infoLayout = new InfoLayout(this);
-        infoLayout.setBackground(Color.black);
 
         myWindow.getContentPane().add(BorderLayout.CENTER, mainLayout);
         myWindow.getContentPane().add(BorderLayout.EAST, infoLayout);//Создание слоёв
