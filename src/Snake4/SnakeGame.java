@@ -9,12 +9,12 @@ public class SnakeGame {
     static final int WIDTH = 20;
     static final int HEIGHT = 20;
     static final int CELL_SIZE = 20;
-    public static boolean isgameOver = false;
-    public static boolean isPaused = false;
+    static boolean isGameOver = false;
+    private static boolean isPaused = false;
     private Direction direction = Direction.Right;
-    public Snake snake;
-    public Food food;
-    public int score = 0;
+    Snake snake;
+    Food food;
+    int score = 0;
 
 
     public static void main(String[] args) {
@@ -22,7 +22,7 @@ public class SnakeGame {
     }
 
 
-    void run(){
+    private void run() {
         JFrame myWindow = new JFrame("Snake. Score : 0");
         myWindow.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         myWindow.setSize(WIDTH * CELL_SIZE+218, HEIGHT * CELL_SIZE + 40);
@@ -64,7 +64,7 @@ public class SnakeGame {
                         break;
 
                     case KeyEvent.VK_ENTER:
-                        if(isgameOver) {
+                        if (isGameOver) {
                             resetGame();
                         }
                         break;
@@ -84,7 +84,7 @@ public class SnakeGame {
         snake = new Snake(10, 10, 5, direction);
         food = new Food();
 
-        while (!isgameOver){
+        while (!isGameOver) {
             if (!isPaused)
                 snake.Move(direction);
             Point oldPointFood = new Point((int)food.getX(), (int)food.getY());
@@ -104,8 +104,6 @@ public class SnakeGame {
     private void resetGame() {
         snake = new Snake(10, 10, 5, direction);
         food.NextFood(snake);
-        isgameOver = false;
+        isGameOver = false;
     }
-
 }
-
