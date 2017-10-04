@@ -18,7 +18,7 @@ public class MainLayout extends JPanel {
     @Override
     public void paint(Graphics g) {
         super.paint(g);
-        for (int x = 0; x < SnakeGame.WIDTH; x++) {
+        for (int x = 0; x < SnakeGame.WIDTH; x++) {//Рисуем сетку
             for (int y = 0; y < SnakeGame.HEIGHT; y++) {
                 g.setColor(Color.DARK_GRAY);
                 g.drawRect(x * SnakeGame.CELL_SIZE, y * SnakeGame.CELL_SIZE,

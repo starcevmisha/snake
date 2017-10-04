@@ -10,19 +10,18 @@ class Food extends Point {
         super(12, 11);
     }
 
-    void NextFood(Snake snake) {
+    void nextFood(Snake snake) {
         x = random.nextInt(SnakeGame.WIDTH);
         y = random.nextInt(SnakeGame.HEIGHT);
         if (snake.isIntersectWithSnake(x,y))
-            NextFood(snake);
+            nextFood(snake);
     }
 
     boolean isEaten(Snake snake) {
-        if ((snake.getSnakeBody().get(0).getX() == this.getX())
-                && (snake.getSnakeBody().get(0).getY() == this.getY())){
-            NextFood(snake);
-            return true;
-        }
-        return false;
+        boolean gotFood = (snake.getSnakeBody().get(0).getX() == this.getX())
+                && (snake.getSnakeBody().get(0).getY() == this.getY());
+        if (gotFood)
+            nextFood(snake);
+        return gotFood;
     }
 }

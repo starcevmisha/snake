@@ -37,7 +37,6 @@ public class InfoLayout extends JPanel {
         g.drawString("Snake length: " + game.snake.getSnakeBody().size(),
                 50, 150);
 
-        int drawY = 180;
         g.drawString("Up: W / Up ", 50, 210);
         g.drawString("Down: S / Down ", 50, 240);
         g.drawString("Left: A / Left ", 50, 270);

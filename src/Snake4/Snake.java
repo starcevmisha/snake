@@ -49,8 +49,11 @@ class Snake {
             y = 0;
         if (y <= -1)
             y = SnakeGame.HEIGHT - 1;
+
         SnakeGame.isGameOver = isIntersectWithSnake(x, y);
         snake.add(0, new Point(x, y));
         snake.remove(snake.size() - 1);
+
+
     }
 }
