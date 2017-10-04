@@ -5,9 +5,10 @@ import java.util.ArrayList;
 
 class Snake {
     private ArrayList<Point> snake = new ArrayList<>();
+    private SnakeGame game;
 
-
-    Snake(int x, int y, int length, Direction direction) {
+    Snake(int x, int y, int length, SnakeGame game) {
+        this.game = game;
         for (int i = 0; i < length; i++) {
             Point point = new Point(x-i, y);
             snake.add(point);
@@ -18,28 +19,29 @@ class Snake {
         return snake;
     }
 
-    boolean isIntersectWithSnake(int x, int y) {
+    boolean isIntersectWith(Point p) {
         for (Point point:snake){
-            if ((int)point.getX() == x && (int)point.getY() == y)
+            if ((int) point.getX() == (int) p.getX()
+                    && (int) point.getY() == (int) p.getY())
                 return true;
         }
         return false;
     }
 
-    void extend(Point point) {
+    private void extend(Point point) {
         snake.add(0, point);
     }
 
-    void Move(Direction direction) {
+    void Move() {
         int x = (int)snake.get(0).getX();
         int y = (int)snake.get(0).getY();
-        if(direction == Direction.Up)
+        if (game.direction == Direction.Up)
             y--;
-        if (direction == Direction.Right)
+        if (game.direction == Direction.Right)
             x++;
-        if (direction == Direction.Down)
+        if (game.direction == Direction.Down)
             y++;
-        if (direction == Direction.Left)
+        if (game.direction == Direction.Left)
             x--;
         if (x >= SnakeGame.WIDTH)
             x = 0;
@@ -50,8 +52,18 @@ class Snake {
         if (y <= -1)
             y = SnakeGame.HEIGHT - 1;
 
-        SnakeGame.isGameOver = isIntersectWithSnake(x, y);
-        snake.add(0, new Point(x, y));
+        Point head = new Point(x, y);
+        SnakeGame.isGameOver =
+                isIntersectWith(head) || game.wall.isIntersectWith(head);
+
+
+        Point oldPointFood = new Point((int) game.food.getX(), (int) game.food.getY());
+        if (game.food.isEaten(head)) {
+            game.score += 1;
+            extend(oldPointFood);
+        }
+
+        snake.add(0, head);
         snake.remove(snake.size() - 1);
 
 

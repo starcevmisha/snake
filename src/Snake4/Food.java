@@ -5,23 +5,27 @@ import java.util.Random;
 
 class Food extends Point {
     private Random random = new Random(34567542);
+    SnakeGame game;
 
-    Food() {
-        super(12, 11);
+    Food(SnakeGame game) {
+        super(18, 10);
+        this.game = game;
+
     }
 
-    void nextFood(Snake snake) {
+    void nextFood() {
         x = random.nextInt(SnakeGame.WIDTH);
         y = random.nextInt(SnakeGame.HEIGHT);
-        if (snake.isIntersectWithSnake(x,y))
-            nextFood(snake);
+        if (game.snake.isIntersectWith(new Point(x, y))
+                || game.wall.isIntersectWith(new Point(x, y)))
+            nextFood();
     }
 
-    boolean isEaten(Snake snake) {
-        boolean gotFood = (snake.getSnakeBody().get(0).getX() == this.getX())
-                && (snake.getSnakeBody().get(0).getY() == this.getY());
+    boolean isEaten(Point snakeHead) {
+        boolean gotFood = (snakeHead.getX() == this.getX())
+                && (snakeHead.getY() == this.getY());
         if (gotFood)
-            nextFood(snake);
+            nextFood();
         return gotFood;
     }
 }

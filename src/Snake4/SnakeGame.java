@@ -30,35 +30,31 @@ public class SnakeGame {
         myWindow.getContentPane().add(BorderLayout.CENTER, mainLayout);
         myWindow.getContentPane().add(BorderLayout.EAST, infoLayout);//Создание слоёв
 
-
-        snake = new Snake(10, 10, 5, direction);
-        food = new Food();
+        snake = new Snake(10, 10, 5, this);
+        food = new Food(this);
+        wall = new Wall();
 
         while (true) {
             if (!isPaused && !isGameOver)
-                snake.Move(direction);
-
-            Point oldPointFood = new Point((int)food.getX(), (int)food.getY());
-            if (food.isEaten(snake)) {
-                score += 1;
-                snake.extend(oldPointFood);
-            }
+                snake.Move();
 
             mainLayout.repaint();
             infoLayout.repaint();
 
             try {
                 Thread.sleep(150);
-            } catch (InterruptedException e) { e.printStackTrace(); }
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
         }
 
     }
 
     void resetGame() {
         direction = Direction.Right;
-        snake = new Snake(10, 10, 5, direction);
+        snake = new Snake(10, 10, 5, this);
         score = 0;
-        food.nextFood(snake);
+        food.nextFood();
         isGameOver = false;
     }
 }
