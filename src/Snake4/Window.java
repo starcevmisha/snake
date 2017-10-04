@@ -47,7 +47,9 @@ class Window extends JFrame {
                         break;
 
                     case KeyEvent.VK_ENTER:
-                        game.resetGame();
+                        if (SnakeGame.isGameOver) {
+                            game.resetGame();
+                        }
                         break;
                 }
             }

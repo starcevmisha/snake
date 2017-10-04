@@ -25,18 +25,13 @@ public class MainLayout extends JPanel {
                         SnakeGame.CELL_SIZE, SnakeGame.CELL_SIZE);
             }
         }
-
-        for (Point point : game.wall.getWallMap()) {
-            paint_point(g, point, Color.DARK_GRAY);
-        }
-
-        paint_point(g, game.food, Color.magenta);
-
         for (Point point : game.snake.getSnakeBody()) {
             paint_point(g, point, Color.GREEN);
         }
-
         paint_circle(g, game.snake.getSnakeBody().get(0), Color.black);
+
+
+        paint_point(g, game.food, Color.magenta);
 
         if (SnakeGame.isGameOver) {
             g.setColor(Color.red);

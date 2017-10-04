@@ -40,8 +40,7 @@ public class InfoLayout extends JPanel {
         g.drawString("Up: W / Up ", 50, 210);
         g.drawString("Down: S / Down ", 50, 240);
         g.drawString("Left: A / Left ", 50, 270);
-        g.drawString("Right: D / Right ", 50, 300);
+        g.drawString("MRight: D / Right ", 50, 300);
         g.drawString("Pause: P", 50, 330);
-        g.drawString("Restart Game: Enter", 50, 360);
     }
 }
