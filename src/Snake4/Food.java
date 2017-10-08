@@ -5,12 +5,11 @@ import java.util.Random;
 
 class Food extends Point {
     private Random random = new Random(34567542);
-    SnakeGame game;
+    private SnakeGame game;
 
     Food(SnakeGame game) {
         super(18, 10);
         this.game = game;
-
     }
 
     void nextFood() {

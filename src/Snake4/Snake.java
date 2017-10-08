@@ -35,22 +35,10 @@ class Snake {
     void Move() {
         int x = (int)snake.get(0).getX();
         int y = (int)snake.get(0).getY();
-        if (game.direction == Direction.Up)
-            y--;
-        if (game.direction == Direction.Right)
-            x++;
-        if (game.direction == Direction.Down)
-            y++;
-        if (game.direction == Direction.Left)
-            x--;
-        if (x >= SnakeGame.WIDTH)
-            x = 0;
-        if (x <= -1)
-            x = SnakeGame.WIDTH - 1;
-        if (y >= SnakeGame.HEIGHT)
-            y = 0;
-        if (y <= -1)
-            y = SnakeGame.HEIGHT - 1;
+        y += (game.direction == Direction.Down) ? 1 : ((game.direction == Direction.Up) ? -1 : 0);
+        x += (game.direction == Direction.Right) ? 1 : ((game.direction == Direction.Left) ? -1 : 0);
+        x = (x >= SnakeGame.WIDTH) ? 0 : ((x <= -1) ? SnakeGame.WIDTH - 1 : x);
+        y = (y >= SnakeGame.HEIGHT) ? 0 : ((y <= -1) ? SnakeGame.HEIGHT - 1 : y);
 
         Point head = new Point(x, y);
         SnakeGame.isGameOver =
@@ -65,7 +53,5 @@ class Snake {
 
         snake.add(0, head);
         snake.remove(snake.size() - 1);
-
-
     }
 }

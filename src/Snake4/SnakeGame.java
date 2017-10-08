@@ -17,7 +17,6 @@ public class SnakeGame {
 
 
     public static void main(String[] args) {
-
         new SnakeGame().run();
     }
 
@@ -27,8 +26,9 @@ public class SnakeGame {
         MainLayout mainLayout = new MainLayout(this);
         InfoLayout infoLayout = new InfoLayout(this);
 
+        //Создание слоёв
         myWindow.getContentPane().add(BorderLayout.CENTER, mainLayout);
-        myWindow.getContentPane().add(BorderLayout.EAST, infoLayout);//Создание слоёв
+        myWindow.getContentPane().add(BorderLayout.EAST, infoLayout);
 
         snake = new Snake(10, 10, 5, this);
         food = new Food(this);
