@@ -1,7 +1,7 @@
-package Snake.models;
+package SnakeGame.models;
 
-import Snake.Direction;
-import Snake.Main;
+import SnakeGame.Direction;
+import SnakeGame.Main;
 
 import java.awt.*;
 import java.util.ArrayList;

@@ -1,6 +1,6 @@
-package Snake.gui;
+package SnakeGame.gui;
 
-import Snake.Game;
+import SnakeGame.Game;
 
 import javax.swing.*;
 import java.awt.*;
@@ -25,8 +25,8 @@ public class InfoLayout extends JPanel {
 
         g.setFont(LARGE_FONT);
         g.drawString(
-                "Snake Game",
-                getWidth() / 2 - g.getFontMetrics().stringWidth("Snake Game") / 2,
+                "SnakeGame Game",
+                getWidth() / 2 - g.getFontMetrics().stringWidth("SnakeGame Game") / 2,
                 50);
 
         g.setFont(MEDIUM_FONT);
@@ -36,7 +36,7 @@ public class InfoLayout extends JPanel {
         g.setFont(SMALL_FONT);
 
         g.drawString("Total Score: " + game.score, 50, 120);
-        g.drawString("Snake length: " + game.snake.getSnakeBody().size(),
+        g.drawString("SnakeGame length: " + game.snake.getSnakeBody().size(),
                 50, 150);
 
         g.drawString("Up: W / Up ", 50, 210);

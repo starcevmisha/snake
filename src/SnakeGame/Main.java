@@ -1,8 +1,8 @@
-package Snake;
+package SnakeGame;
 
 
-import Snake.gui.InfoLayout;
-import Snake.gui.MainLayout;
+import SnakeGame.gui.InfoLayout;
+import SnakeGame.gui.MainLayout;
 
 import java.awt.*;
 
@@ -21,7 +21,7 @@ public class Main {
     private void run() {
         game = new Game();
 
-        Snake.gui.Window myWindow = new Snake.gui.Window(game);
+        SnakeGame.gui.Window myWindow = new SnakeGame.gui.Window(game);
         MainLayout mainLayout = new MainLayout(game);
         InfoLayout infoLayout = new InfoLayout(game);
 

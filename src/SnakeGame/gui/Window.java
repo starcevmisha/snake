@@ -1,8 +1,8 @@
-package Snake.gui;
+package SnakeGame.gui;
 
-import Snake.Direction;
-import Snake.Game;
-import Snake.Main;
+import SnakeGame.Direction;
+import SnakeGame.Game;
+import SnakeGame.Main;
 
 import javax.swing.*;
 import java.awt.event.KeyAdapter;
@@ -10,7 +10,7 @@ import java.awt.event.KeyEvent;
 
 public class Window extends JFrame {
     public Window(Game game) {
-        super("Snake");
+        super("SnakeGame");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setSize(Main.WIDTH * Main.CELL_SIZE + 218,
                 Main.HEIGHT * Main.CELL_SIZE + 40);

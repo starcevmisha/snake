@@ -1,7 +1,7 @@
-package Snake.gui;
+package SnakeGame.gui;
 
-import Snake.Game;
-import Snake.Main;
+import SnakeGame.Game;
+import SnakeGame.Main;
 
 import javax.swing.*;
 import java.awt.*;

@@ -1,6 +1,6 @@
-package Snake.models;
+package SnakeGame.models;
 
-import Snake.Main;
+import SnakeGame.Main;
 
 import java.awt.*;
 import java.util.Random;
