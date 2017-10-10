@@ -22,10 +22,9 @@ public class Game {
     }
 
     public void oneStep() {
-        Point head = snake.newHeadCoordinates(direction);
+        Point head = snake.move(direction);
         Game.isGameOver =
-                snake.isIntersectWith(head) || wall.isIntersectWith(head);
-        snake.move(head);
+                snake.isLoop() || wall.isIntersectWith(head);
 
         Point oldPointFood = new Point((int) food.getX(), (int) food.getY());
         if (food.isEaten(head)) {

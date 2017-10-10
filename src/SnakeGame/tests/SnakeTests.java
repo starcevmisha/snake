@@ -14,8 +14,7 @@ class SnakeTests {
 
     @Test
     void testSnakeMove() {
-        Point head = snake.newHeadCoordinates(Direction.Right);
-        snake.move(head);
+        Point head = snake.move(Direction.Right);
         assertTrue(snake.isIntersectWith(new Point(11, 10)));
     }
 }

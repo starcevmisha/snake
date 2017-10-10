@@ -11,6 +11,7 @@ public class Main {
     public static final int HEIGHT = 20;
     public static final int CELL_SIZE = 20;
     public static final int snakeLength = 5;
+    public static final int Speed = 150;
     Game game;
 
 
@@ -24,11 +25,8 @@ public class Main {
         SnakeGame.gui.Window myWindow = new SnakeGame.gui.Window(game);
         MainLayout mainLayout = new MainLayout(game);
         InfoLayout infoLayout = new InfoLayout(game);
-
-        //Создание слоёв
         myWindow.getContentPane().add(BorderLayout.CENTER, mainLayout);
         myWindow.getContentPane().add(BorderLayout.EAST, infoLayout);
-
 
         while (true) {
             if (!Game.isPaused && !Game.isGameOver)
@@ -38,7 +36,7 @@ public class Main {
             infoLayout.repaint();
 
             try {
-                Thread.sleep(150);
+                Thread.sleep(Speed);
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
