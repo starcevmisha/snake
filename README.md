@@ -3,4 +3,4 @@
 
 ### Скриншоты
 
-![alt text](https://github.com/starcevmisha/snake/blob/master/src/Screenshots/1.png?raw=true)
+![alt text](https://github.com/starcevmisha/snake/blob/master/screenshots/1.png?raw=true)
