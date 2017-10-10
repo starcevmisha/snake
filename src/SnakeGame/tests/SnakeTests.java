@@ -13,14 +13,14 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 class SnakeTests {
 
     @Test
-    void testSnakeMove() {
+    void testMove() {
         Snake snake = new Snake(10, 10, 10);
-        Point head = snake.move(Direction.Right);
+        snake.move(Direction.Right);
         assertTrue(snake.isIntersectWith(new Point(11, 10)));
     }
 
     @Test
-    void testSnakeLoop() {
+    void testLoop() {
         Snake snake = new Snake(10, 10, 10);
         snake.move(Direction.Down);
         snake.move(Direction.Left);
