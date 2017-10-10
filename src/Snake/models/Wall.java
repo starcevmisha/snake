@@ -1,4 +1,4 @@
-package Snake4.models;
+package Snake.models;
 
 import java.awt.*;
 import java.util.ArrayList;

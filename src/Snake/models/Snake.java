@@ -1,7 +1,7 @@
-package Snake4.models;
+package Snake.models;
 
-import Snake4.Direction;
-import Snake4.Main;
+import Snake.Direction;
+import Snake.Main;
 
 import java.awt.*;
 import java.util.ArrayList;

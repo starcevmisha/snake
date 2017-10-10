@@ -1,8 +1,8 @@
-package Snake4.gui;
+package Snake.gui;
 
-import Snake4.Direction;
-import Snake4.Game;
-import Snake4.Main;
+import Snake.Direction;
+import Snake.Game;
+import Snake.Main;
 
 import javax.swing.*;
 import java.awt.event.KeyAdapter;

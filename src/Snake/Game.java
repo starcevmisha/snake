@@ -1,8 +1,8 @@
-package Snake4;
+package Snake;
 
-import Snake4.models.Food;
-import Snake4.models.Snake;
-import Snake4.models.Wall;
+import Snake.models.Food;
+import Snake.models.Snake;
+import Snake.models.Wall;
 
 import java.awt.*;
 
