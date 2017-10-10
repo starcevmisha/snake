@@ -4,13 +4,13 @@ import javax.swing.*;
 import java.awt.*;
 
 public class MainLayout extends JPanel {
-    private SnakeGame game;
+    private Game game;
 
-    MainLayout(SnakeGame game) {
+    MainLayout(Game game) {
         this.game = game;
         setPreferredSize(new Dimension(
-                SnakeGame.WIDTH * SnakeGame.CELL_SIZE,
-                SnakeGame.HEIGHT * SnakeGame.CELL_SIZE)
+                Main.WIDTH * Main.CELL_SIZE,
+                Main.HEIGHT * Main.CELL_SIZE)
         );
         setBackground(Color.BLACK);
     }
@@ -18,11 +18,11 @@ public class MainLayout extends JPanel {
     @Override
     public void paint(Graphics g) {
         super.paint(g);
-        for (int x = 0; x < SnakeGame.WIDTH; x++) {//Рисуем сетку
-            for (int y = 0; y < SnakeGame.HEIGHT; y++) {
+        for (int x = 0; x < Main.WIDTH; x++) {//Рисуем сетку
+            for (int y = 0; y < Main.HEIGHT; y++) {
                 g.setColor(Color.DARK_GRAY);
-                g.drawRect(x * SnakeGame.CELL_SIZE, y * SnakeGame.CELL_SIZE,
-                        SnakeGame.CELL_SIZE, SnakeGame.CELL_SIZE);
+                g.drawRect(x * Main.CELL_SIZE, y * Main.CELL_SIZE,
+                        Main.CELL_SIZE, Main.CELL_SIZE);
             }
         }
 
@@ -38,28 +38,28 @@ public class MainLayout extends JPanel {
 
         paint_circle(g, game.snake.getSnakeBody().get(0), Color.black);
 
-        if (SnakeGame.isGameOver) {
+        if (Game.isGameOver) {
             g.setColor(Color.red);
             g.setFont(new Font("Arial", Font.BOLD, 40));
             FontMetrics fm = g.getFontMetrics();
-            g.drawString("GAME OVER", (SnakeGame.WIDTH * SnakeGame.CELL_SIZE - fm.stringWidth("GAME OVER")) / 2,
-                    (SnakeGame.HEIGHT * SnakeGame.CELL_SIZE) / 2);
+            g.drawString("GAME OVER", (Main.WIDTH * Main.CELL_SIZE - fm.stringWidth("GAME OVER")) / 2,
+                    (Main.HEIGHT * Main.CELL_SIZE) / 2);
         }
     }
 
     private void paint_point(Graphics g, Point p, Color color) {
         g.setColor(color);
-        g.fillRect(p.x * SnakeGame.CELL_SIZE, p.y * SnakeGame.CELL_SIZE,
-                SnakeGame.CELL_SIZE, SnakeGame.CELL_SIZE);
+        g.fillRect(p.x * Main.CELL_SIZE, p.y * Main.CELL_SIZE,
+                Main.CELL_SIZE, Main.CELL_SIZE);
         g.setColor(Color.GRAY);
-        g.drawRect(p.x * SnakeGame.CELL_SIZE, p.y * SnakeGame.CELL_SIZE,
-                SnakeGame.CELL_SIZE, SnakeGame.CELL_SIZE);
+        g.drawRect(p.x * Main.CELL_SIZE, p.y * Main.CELL_SIZE,
+                Main.CELL_SIZE, Main.CELL_SIZE);
     }
 
     private void paint_circle(Graphics g, Point p, Color color) {
         g.setColor(color);
-        g.fillArc(p.x * SnakeGame.CELL_SIZE, p.y * SnakeGame.CELL_SIZE,
-                SnakeGame.CELL_SIZE / 2, SnakeGame.CELL_SIZE / 2, 0, 360);
+        g.fillArc(p.x * Main.CELL_SIZE, p.y * Main.CELL_SIZE,
+                Main.CELL_SIZE / 2, Main.CELL_SIZE / 2, 0, 360);
 
     }
 }
