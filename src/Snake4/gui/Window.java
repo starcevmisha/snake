@@ -1,15 +1,19 @@
-package Snake4;
+package Snake4.gui;
+
+import Snake4.Direction;
+import Snake4.Game;
+import Snake4.Main;
 
 import javax.swing.*;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 
-class Window extends JFrame {
-    Window(SnakeGame game) {
+public class Window extends JFrame {
+    public Window(Game game) {
         super("Snake");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setSize(SnakeGame.WIDTH * SnakeGame.CELL_SIZE + 218,
-                SnakeGame.HEIGHT * SnakeGame.CELL_SIZE + 40);
+        setSize(Main.WIDTH * Main.CELL_SIZE + 218,
+                Main.HEIGHT * Main.CELL_SIZE + 40);
         setLocation(200, 100);
         setResizable(false);
         setVisible(true);
@@ -43,11 +47,11 @@ class Window extends JFrame {
                         break;
 
                     case KeyEvent.VK_P:
-                        SnakeGame.isPaused = !SnakeGame.isPaused;
+                        Game.isPaused = !Game.isPaused;
                         break;
 
                     case KeyEvent.VK_ENTER:
-                        game.resetGame();
+                        game.reset();
                         break;
                 }
             }

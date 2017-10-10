@@ -1,15 +1,17 @@
-package Snake4;
+package Snake4.gui;
+
+import Snake4.Game;
 
 import javax.swing.*;
 import java.awt.*;
 
 public class InfoLayout extends JPanel {
-    private SnakeGame game;
+    private Game game;
     private static final Font LARGE_FONT = new Font("Tahoma", Font.BOLD, 20);
     private static final Font MEDIUM_FONT = new Font("Tahoma", Font.BOLD, 16);
     private static final Font SMALL_FONT = new Font("Tahoma", Font.BOLD, 12);
 
-    InfoLayout(SnakeGame game) {
+    public InfoLayout(Game game) {
         this.game = game;
         setPreferredSize(new Dimension(200, 400));
         setBackground(Color.BLACK);

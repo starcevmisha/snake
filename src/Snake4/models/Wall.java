@@ -1,12 +1,12 @@
-package Snake4;
+package Snake4.models;
 
 import java.awt.*;
 import java.util.ArrayList;
 
-class Wall {
+public class Wall {
     private ArrayList<Point> wallList = new ArrayList<>();
 
-    Wall() {
+    public Wall() {
         String[] wallMap = {
                 "11100000000000000111",
                 "10000000000000000001",
@@ -35,7 +35,7 @@ class Wall {
                     wallList.add(new Point(j, i));
     }
 
-    boolean isIntersectWith(Point p) {
+    public boolean isIntersectWith(Point p) {
         for (Point point : wallList) {
             if ((int) point.getX() == (int) p.getX()
                     && (int) point.getY() == (int) p.getY())
@@ -44,7 +44,7 @@ class Wall {
         return false;
     }
 
-    ArrayList<Point> getWallMap() {
+    public ArrayList<Point> getWallMap() {
         return wallList;
     }
 }
