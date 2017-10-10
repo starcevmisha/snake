@@ -1,13 +1,16 @@
 package Snake4;
 
 
+import Snake4.gui.InfoLayout;
+import Snake4.gui.MainLayout;
+
 import java.awt.*;
 
 public class Main {
-    static final int WIDTH = 20;
-    static final int HEIGHT = 20;
-    static final int CELL_SIZE = 20;
-    static final int snakeLength = 1;
+    public static final int WIDTH = 20;
+    public static final int HEIGHT = 20;
+    public static final int CELL_SIZE = 20;
+    public static final int snakeLength = 5;
     Game game;
 
 
@@ -18,7 +21,7 @@ public class Main {
     private void run() {
         game = new Game();
 
-        Window myWindow = new Window(game);
+        Snake4.gui.Window myWindow = new Snake4.gui.Window(game);
         MainLayout mainLayout = new MainLayout(game);
         InfoLayout infoLayout = new InfoLayout(game);
 

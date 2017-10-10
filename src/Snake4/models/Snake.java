@@ -1,23 +1,26 @@
-package Snake4;
+package Snake4.models;
+
+import Snake4.Direction;
+import Snake4.Main;
 
 import java.awt.*;
 import java.util.ArrayList;
 
-class Snake {
+public class Snake {
     private ArrayList<Point> snake = new ArrayList<>();
 
-    Snake(int x, int y, int length) {
+    public Snake(int x, int y, int length) {
         for (int i = 0; i < length; i++) {
             Point point = new Point(x-i, y);
             snake.add(point);
         }
     }
 
-    ArrayList<Point> getSnakeBody() {
+    public ArrayList<Point> getSnakeBody() {
         return snake;
     }
 
-    boolean isIntersectWith(Point p) {
+    public boolean isIntersectWith(Point p) {
         for (Point point:snake){
             if ((int) point.getX() == (int) p.getX()
                     && (int) point.getY() == (int) p.getY())
@@ -30,7 +33,7 @@ class Snake {
         snake.add(0, point);
     }
 
-    Point newHeadCoordinates(Direction direction) {
+    public Point newHeadCoordinates(Direction direction) {
         int x = (int)snake.get(0).getX();
         int y = (int)snake.get(0).getY();
         y += (direction == Direction.Down) ? 1 : ((direction == Direction.Up) ? -1 : 0);

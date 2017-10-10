@@ -1,22 +1,24 @@
-package Snake4;
+package Snake4.models;
+
+import Snake4.Main;
 
 import java.awt.*;
 import java.util.Random;
 
-class Food extends Point {
+public class Food extends Point {
     private Random random = new Random(34567542);
     private Main game;
 
-    Food() {
+    public Food() {
         super(18, 10);
     }
 
-    void nextFood() {
+    public void nextFood() {
         x = random.nextInt(Main.WIDTH);
         y = random.nextInt(Main.HEIGHT);
     }
 
-    boolean isEaten(Point snakeHead) {
+    public boolean isEaten(Point snakeHead) {
         return (snakeHead.getX() == this.getX())
                 && (snakeHead.getY() == this.getY());
     }

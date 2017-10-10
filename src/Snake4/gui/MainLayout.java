@@ -1,4 +1,7 @@
-package Snake4;
+package Snake4.gui;
+
+import Snake4.Game;
+import Snake4.Main;
 
 import javax.swing.*;
 import java.awt.*;
@@ -6,7 +9,7 @@ import java.awt.*;
 public class MainLayout extends JPanel {
     private Game game;
 
-    MainLayout(Game game) {
+    public MainLayout(Game game) {
         this.game = game;
         setPreferredSize(new Dimension(
                 Main.WIDTH * Main.CELL_SIZE,

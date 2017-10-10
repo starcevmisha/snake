@@ -1,11 +1,15 @@
-package Snake4;
+package Snake4.gui;
+
+import Snake4.Direction;
+import Snake4.Game;
+import Snake4.Main;
 
 import javax.swing.*;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 
-class Window extends JFrame {
-    Window(Game game) {
+public class Window extends JFrame {
+    public Window(Game game) {
         super("Snake");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setSize(Main.WIDTH * Main.CELL_SIZE + 218,

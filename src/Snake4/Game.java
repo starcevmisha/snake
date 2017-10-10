@@ -1,15 +1,19 @@
 package Snake4;
 
+import Snake4.models.Food;
+import Snake4.models.Snake;
+import Snake4.models.Wall;
+
 import java.awt.*;
 
 public class Game {
-    static boolean isGameOver = false;
-    static boolean isPaused = false;
-    int score = 0;
-    Snake snake;
-    Food food;
-    Wall wall;
-    Direction direction = Direction.Right;
+    public static boolean isGameOver = false;
+    public static boolean isPaused = false;
+    public int score = 0;
+    public Snake snake;
+    public Food food;
+    public Wall wall;
+    public Direction direction = Direction.Right;
 
     public Game() {
         snake = new Snake(10, 10, Main.snakeLength);
