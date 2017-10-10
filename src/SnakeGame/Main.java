@@ -10,9 +10,8 @@ public class Main {
     public static final int WIDTH = 20;
     public static final int HEIGHT = 20;
     public static final int CELL_SIZE = 20;
-    public static final int snakeLength = 5;
-    public static final int Speed = 150;
-    Game game;
+    static final int snakeLength = 5;
+    private static final int Speed = 150;
 
 
     public static void main(String[] args) {
@@ -20,7 +19,7 @@ public class Main {
     }
 
     private void run() {
-        game = new Game();
+        Game game = new Game();
 
         SnakeGame.gui.Window myWindow = new SnakeGame.gui.Window(game);
         MainLayout mainLayout = new MainLayout(game);

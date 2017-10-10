@@ -7,10 +7,17 @@ import org.junit.jupiter.api.Test;
 
 import java.awt.*;
 
+import static java.lang.Math.pow;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 
 class SnakeTests {
+    @Test
+    void testInit() {
+        new Snake(1, 1, 100);
+        new Snake(-2, (int) pow(10, 100), 1);
+    }
 
     @Test
     void testMove() {
@@ -35,6 +42,15 @@ class SnakeTests {
         food.setXY(11, 10);
         Point head = snake.move(Direction.Right);
         assertTrue(food.isEaten(head));
+    }
+
+    @Test
+    void testExtend() {
+        Snake snake = new Snake(0, 0, 15);
+        for (int i = 0; i < 20; i++) {
+            snake.extend(new Point(i, -i));
+        }
+        assertEquals(snake.getBody().size(), 35);
     }
 
 }

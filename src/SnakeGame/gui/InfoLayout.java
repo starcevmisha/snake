@@ -36,7 +36,7 @@ public class InfoLayout extends JPanel {
         g.setFont(SMALL_FONT);
 
         g.drawString("Total Score: " + game.score, 50, 120);
-        g.drawString("SnakeGame length: " + game.snake.getSnakeBody().size(),
+        g.drawString("SnakeGame length: " + game.snake.getBody().size(),
                 50, 150);
 
         g.drawString("Up: W / Up ", 50, 210);
