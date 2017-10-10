@@ -25,8 +25,8 @@ public class InfoLayout extends JPanel {
 
         g.setFont(LARGE_FONT);
         g.drawString(
-                "SnakeGame Game",
-                getWidth() / 2 - g.getFontMetrics().stringWidth("SnakeGame Game") / 2,
+                "The Snake Game",
+                getWidth() / 2 - g.getFontMetrics().stringWidth("The Snake Game") / 2,
                 50);
 
         g.setFont(MEDIUM_FONT);
