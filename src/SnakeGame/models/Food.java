@@ -13,6 +13,11 @@ public class Food extends Point {
         super(18, 10);
     }
 
+    public void setXY(int x, int y) {
+        this.x = x;
+        this.y = y;
+    }
+
     public void nextFood() {
         x = random.nextInt(Main.WIDTH);
         y = random.nextInt(Main.HEIGHT);
