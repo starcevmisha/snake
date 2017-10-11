@@ -4,8 +4,10 @@ import java.awt.*;
 import java.util.ArrayList;
 
 public class Wall {
+
     private ArrayList<Point> wallList = new ArrayList<>();
 
+    //TODO редактор уровней, яблоки рандома с разными очками, супер еда
     public Wall() {
         String[] wallMap = {
                 "11100000000000000111",

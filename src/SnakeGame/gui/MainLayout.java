@@ -21,13 +21,7 @@ public class MainLayout extends JPanel {
     @Override
     public void paint(Graphics g) {
         super.paint(g);
-        for (int x = 0; x < Main.WIDTH; x++) {//Рисуем сетку
-            for (int y = 0; y < Main.HEIGHT; y++) {
-                g.setColor(Color.DARK_GRAY);
-                g.drawRect(x * Main.CELL_SIZE, y * Main.CELL_SIZE,
-                        Main.CELL_SIZE, Main.CELL_SIZE);
-            }
-        }
+//        drawGrid(g);
 
         for (Point point : game.wall.getWallMap()) {
             paint_point(g, point, Color.DARK_GRAY);
@@ -47,6 +41,16 @@ public class MainLayout extends JPanel {
             FontMetrics fm = g.getFontMetrics();
             g.drawString("GAME OVER", (Main.WIDTH * Main.CELL_SIZE - fm.stringWidth("GAME OVER")) / 2,
                     (Main.HEIGHT * Main.CELL_SIZE) / 2);
+        }
+    }
+
+    private void drawGrid(Graphics g) {
+        for (int x = 0; x < Main.WIDTH; x++) {//Рисуем сетку
+            for (int y = 0; y < Main.HEIGHT; y++) {
+                g.setColor(Color.DARK_GRAY);
+                g.drawRect(x * Main.CELL_SIZE, y * Main.CELL_SIZE,
+                        Main.CELL_SIZE, Main.CELL_SIZE);
+            }
         }
     }
 

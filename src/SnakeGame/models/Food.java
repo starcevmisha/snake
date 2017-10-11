@@ -6,7 +6,7 @@ import java.awt.*;
 import java.util.Random;
 
 public class Food extends Point {
-    private Random random = new Random(34567542);
+    private Random random = new Random();
 
     public Food() {
         super(18, 10);

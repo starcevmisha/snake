@@ -26,6 +26,7 @@ public class Main {
         InfoLayout infoLayout = new InfoLayout(game);
         myWindow.getContentPane().add(BorderLayout.CENTER, mainLayout);
         myWindow.getContentPane().add(BorderLayout.EAST, infoLayout);
+        myWindow.setVisible(true);
 
         while (true) {
             if (!Game.isPaused && !Game.isGameOver)
