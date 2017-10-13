@@ -1,4 +1,4 @@
-package SnakeGame.gui;
+package SnakeGame.gameGUI;
 
 import SnakeGame.Direction;
 import SnakeGame.Game;

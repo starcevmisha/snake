@@ -1,4 +1,4 @@
-package SnakeGame.gui;
+package SnakeGame.gameGUI;
 
 import SnakeGame.Game;
 import SnakeGame.Main;
@@ -21,7 +21,7 @@ public class MainLayout extends JPanel {
     @Override
     public void paint(Graphics g) {
         super.paint(g);
-//        drawGrid(g);
+        drawGrid(g);
 
         for (Point point : game.wall.getWallMap()) {
             paint_point(g, point, Color.DARK_GRAY);

@@ -8,7 +8,7 @@ import java.awt.*;
 
 public class Game {
     public static boolean isGameOver = false;
-    public static boolean isPaused = false;
+    public static boolean isPaused = true;
     public int score = 0;
     public Snake snake;
     public Food food;
@@ -18,7 +18,7 @@ public class Game {
     public Game() {
         snake = new Snake(10, 10, Main.snakeLength);
         food = new Food();
-        wall = new Wall();
+        wall = new Wall(2);
     }
 
     public void oneStep() {
@@ -39,6 +39,7 @@ public class Game {
         score = 0;
         newFood();
         isGameOver = false;
+        isPaused = false;
         direction = Direction.Right;
     }
 
