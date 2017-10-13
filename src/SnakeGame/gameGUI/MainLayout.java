@@ -21,10 +21,10 @@ public class MainLayout extends JPanel {
     @Override
     public void paint(Graphics g) {
         super.paint(g);
-        drawGrid(g);
+//        drawGrid(g);
 
         for (Point point : game.wall.getWallMap()) {
-            paint_point(g, point, Color.DARK_GRAY);
+            paint_point(g, point, Color.WHITE);
         }
 
         paint_point(g, game.food, Color.magenta);

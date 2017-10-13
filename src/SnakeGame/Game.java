@@ -14,11 +14,12 @@ public class Game {
     public Food food;
     public Wall wall;
     public Direction direction = Direction.Right;
+    public static int Level = 1;
 
     public Game() {
         snake = new Snake(10, 10, Main.snakeLength);
         food = new Food();
-        wall = new Wall(2);
+        wall = new Wall(Level);
     }
 
     public void oneStep() {

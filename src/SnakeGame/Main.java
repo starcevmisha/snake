@@ -8,13 +8,20 @@ import SnakeGame.menuGUI.StartMenu;
 
 import java.awt.*;
 
-public class Main {
+public class Main implements Runnable {
     public static final int WIDTH = 20;
     public static final int HEIGHT = 20;
     public static final int CELL_SIZE = 20;
     static final int snakeLength = 5;
     private static final int Speed = 150;
-    public static STATE State = STATE.GAME;
+    public static boolean isStartMenu = true;
+
+
+    public static void main(String[] args) {
+        StartMenu startMenu = new StartMenu(new Main());
+//        new Main().run();
+//        TestMenu testMenu = new TestMenu(new Main());
+    }
 
     public void run() {
         Game game = new Game();
@@ -23,11 +30,10 @@ public class Main {
         InfoLayout infoLayout = new InfoLayout(game);
         gameWindow.getContentPane().add(BorderLayout.CENTER, mainLayout);
         gameWindow.getContentPane().add(BorderLayout.EAST, infoLayout);
-//        gameWindow.setVisible(true);
-        StartMenu startMenu = new StartMenu(gameWindow);
-
+        gameWindow.setVisible(true);
 
         while (true) {
+            System.out.println(1234);
             if (!Game.isPaused && !Game.isGameOver)
                 game.oneStep();
             mainLayout.repaint();
@@ -40,13 +46,6 @@ public class Main {
         }
     }
 
-    public static void main(String[] args) {
-        new Main().run();
-    }
 
-    public enum STATE {
-        MENU,
-        GAME
-    }
 }
 
