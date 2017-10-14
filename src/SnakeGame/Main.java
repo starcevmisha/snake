@@ -14,13 +14,12 @@ public class Main implements Runnable {
     public static final int CELL_SIZE = 20;
     static final int snakeLength = 5;
     private static final int Speed = 150;
-    public static boolean isStartMenu = true;
+
 
 
     public static void main(String[] args) {
-        StartMenu startMenu = new StartMenu(new Main());
+        new StartMenu(new Main());
 //        new Main().run();
-//        TestMenu testMenu = new TestMenu(new Main());
     }
 
     public void run() {
