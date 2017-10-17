@@ -32,7 +32,6 @@ public class Main implements Runnable {
         gameWindow.setVisible(true);
 
         while (true) {
-            System.out.println(1234);
             if (!Game.isPaused && !Game.isGameOver)
                 game.oneStep();
             mainLayout.repaint();

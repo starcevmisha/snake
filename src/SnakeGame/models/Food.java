@@ -5,8 +5,11 @@ import SnakeGame.Main;
 import java.awt.*;
 import java.util.Random;
 
+import static java.lang.Math.abs;
+
 public class Food extends Point {
     private Random random = new Random();
+    public int type = 1;
 
     public Food() {
         super(18, 10);
@@ -18,8 +21,11 @@ public class Food extends Point {
     }
 
     public void nextFood() {
-        x = random.nextInt(Main.WIDTH);
-        y = random.nextInt(Main.HEIGHT);
+        this.x = random.nextInt(Main.WIDTH);
+        this.y = random.nextInt(Main.HEIGHT);
+        type = abs(random.nextInt()) % 3 + 1;
+        if (abs(random.nextInt()) % 51 == 0)
+            type = 4;
     }
 
     public boolean isEaten(Point snakeHead) {

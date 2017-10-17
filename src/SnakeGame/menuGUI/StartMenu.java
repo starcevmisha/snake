@@ -10,7 +10,7 @@ public class StartMenu extends JFrame {
     public StartMenu(Main main) {
         super("MENU");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setSize(600, 400);
+        setSize(650, 400);
         setLocation(200, 100);
 
         Font LARGE_FONT = new Font("Tahoma", Font.BOLD, 35);
@@ -26,7 +26,7 @@ public class StartMenu extends JFrame {
 
         ButtonLayout buttonLayout = new ButtonLayout(this, main);
 
-        LevelsLayout levelsLayout = new LevelsLayout();
+        LevelsLayout levelsLayout = new LevelsLayout(main);
 
         getContentPane().add(BorderLayout.WEST, buttonLayout);
         getContentPane().add(BorderLayout.CENTER, levelsLayout);

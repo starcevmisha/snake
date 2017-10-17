@@ -1,14 +1,15 @@
-package SnakeGame.menuGUI;
+package SnakeGame.menuGUI.LevelCreator;
 
 
 import SnakeGame.Main;
+import SnakeGame.models.Wall;
 
 import javax.swing.*;
 import javax.swing.border.LineBorder;
 import java.awt.*;
 
 public class ButtonLayout extends JPanel {
-    public ButtonLayout(JFrame parrentFrame, Main main) {
+    public ButtonLayout(LevelCreatorWindow levelCreatorWindow, Main main) {
         Font MEDIUM_FONT = new Font("Tahoma", Font.BOLD, 16);
         setPreferredSize(new Dimension(200, 800));
         setBackground(Color.BLACK);
@@ -23,9 +24,11 @@ public class ButtonLayout extends JPanel {
         startButton.setForeground(Color.green);
         startButton.setOpaque(true);
         startButton.addActionListener(e -> {
-            parrentFrame.setVisible(false);
+
+            Wall.setCustomMap(levelCreatorWindow.map);
             Thread myThread = new Thread(main);
             myThread.start();
+            levelCreatorWindow.setVisible(false);
         });
         add(startButton);
 
@@ -42,9 +45,6 @@ public class ButtonLayout extends JPanel {
             System.exit(0);
         });
         add(exitButton);
-
-
-
 
 
     }

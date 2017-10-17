@@ -30,6 +30,13 @@ public class Snake {
         return false;
     }
 
+    public void cut() {
+        ArrayList<Point> oldBody = body;
+        body = new ArrayList<>();
+        for (int i = 0; i < 5; i++) {
+            body.add(oldBody.get(i));
+        }
+    }
     public boolean isIntersectWith(Point p) {
         for (Point point : body) {
             if ((int) point.getX() == (int) p.getX()
@@ -40,6 +47,7 @@ public class Snake {
     }
 
     public void extend(Point point) {
+
         body.add(0, point);
     }
 

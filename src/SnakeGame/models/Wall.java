@@ -72,7 +72,10 @@ public class Wall {
             "00000000000000000000",
             "11111111111111111111"
     };
-    private ArrayList<Point> wallList = new ArrayList<>();
+    static boolean isSeted = false;
+
+
+    private static ArrayList<Point> wallList = new ArrayList<>();
     Map wallMapDict = new HashMap<Integer, String[]>() {{
         put(1, wallMap1);
         put(2, wallMap2);
@@ -84,12 +87,23 @@ public class Wall {
 
     //TODO редактор уровней, яблоки рандома с разными очками, супер еда
     public Wall(int level) {
-        String[] wallMap = (String[]) wallMapDict.get(level);
-        for (int i = 0; i < wallMap.length; i++)
-            for (int j = 0; j < wallMap[0].length(); j++)
-                if (wallMap[i].charAt(j) == '1')
-                    wallList.add(new Point(j, i));
+        if (!isSeted) {
+            String[] wallMap = (String[]) wallMapDict.get(level);
+            for (int i = 0; i < wallMap.length; i++)
+                for (int j = 0; j < wallMap[0].length(); j++)
+                    if (wallMap[i].charAt(j) == '1')
+                        wallList.add(new Point(j, i));
+        }
     }
+
+    public static void setCustomMap(boolean[][] map) {
+        for (int i = 0; i < map.length; i++)
+            for (int j = 0; j < map[0].length; j++)
+                if (map[j][i])
+                    wallList.add(new Point(j, i));
+        isSeted = true;
+    }
+
 
     public boolean isIntersectWith(Point p) {
         for (Point point : wallList) {

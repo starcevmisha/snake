@@ -2,16 +2,20 @@ package SnakeGame;
 
 import SnakeGame.models.Food;
 import SnakeGame.models.Snake;
+import SnakeGame.models.SuperFood;
 import SnakeGame.models.Wall;
 
 import java.awt.*;
+import java.util.Random;
 
 public class Game {
+    public SuperFood superFood;
     public static boolean isGameOver = false;
     public static boolean isPaused = true;
     public int score = 0;
     public Snake snake;
     public Food food;
+    private Random random = new Random();
     public Wall wall;
     public Direction direction = Direction.Right;
     public static int Level = 1;
@@ -19,6 +23,7 @@ public class Game {
     public Game() {
         snake = new Snake(10, 10, Main.snakeLength);
         food = new Food();
+        superFood = new SuperFood();
         wall = new Wall(Level);
     }
 
@@ -29,10 +34,25 @@ public class Game {
 
         Point oldPointFood = new Point((int) food.getX(), (int) food.getY());
         if (food.isEaten(head)) {
-            score += 1;
+            score += food.type;
+            if (food.type == 4)
+                score += 10;
+            System.out.println(123);
             snake.extend(oldPointFood);
             newFood();
         }
+        if (superFood.isEaten(head)) {
+            snake.cut();
+            score -= 20;
+            newSuperFood();
+            superFood.isVisible = false;
+        }
+        if (!superFood.isVisible)
+            if (random.nextInt() % superFood.probability == 0)
+                superFood.setVisible();
+        if (superFood.isVisible)
+            superFood.check();
+
     }
 
     public void reset() {
@@ -48,5 +68,11 @@ public class Game {
         while (snake.isIntersectWith(food)
                 || wall.isIntersectWith(food))
             food.nextFood();
+    }
+
+    void newSuperFood() {
+        while (snake.isIntersectWith(superFood)
+                || wall.isIntersectWith(superFood))
+            superFood.nextFood();
     }
 }
