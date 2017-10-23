@@ -1,4 +1,4 @@
-package SnakeGame.gui;
+package SnakeGame.gameGUI;
 
 import SnakeGame.Game;
 
@@ -21,7 +21,6 @@ public class InfoLayout extends JPanel {
     public void paint(Graphics g) {
         super.paint(g);
         g.setColor(Color.GREEN);
-
 
         g.setFont(LARGE_FONT);
         g.drawString(

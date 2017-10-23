@@ -1,46 +1,46 @@
 package SnakeGame;
 
 
-import SnakeGame.gui.InfoLayout;
-import SnakeGame.gui.MainLayout;
+import SnakeGame.gameGUI.GameWindow;
+import SnakeGame.gameGUI.InfoLayout;
+import SnakeGame.gameGUI.MainLayout;
+import SnakeGame.menuGUI.StartMenu;
 
 import java.awt.*;
 
-public class Main {
+public class Main implements Runnable {
     public static final int WIDTH = 20;
     public static final int HEIGHT = 20;
     public static final int CELL_SIZE = 20;
     static final int snakeLength = 5;
     private static final int Speed = 150;
 
-
     public static void main(String[] args) {
-        new Main().run();
+        new StartMenu(new Main());
     }
 
-    private void run() {
+    public void run() {
         Game game = new Game();
-
-        SnakeGame.gui.Window myWindow = new SnakeGame.gui.Window(game);
+        GameWindow gameWindow = new GameWindow(game);
         MainLayout mainLayout = new MainLayout(game);
         InfoLayout infoLayout = new InfoLayout(game);
-        myWindow.getContentPane().add(BorderLayout.CENTER, mainLayout);
-        myWindow.getContentPane().add(BorderLayout.EAST, infoLayout);
-        myWindow.setVisible(true);
+        gameWindow.getContentPane().add(BorderLayout.CENTER, mainLayout);
+        gameWindow.getContentPane().add(BorderLayout.EAST, infoLayout);
+        gameWindow.setVisible(true);
 
         while (true) {
             if (!Game.isPaused && !Game.isGameOver)
                 game.oneStep();
-
             mainLayout.repaint();
             infoLayout.repaint();
-
             try {
                 Thread.sleep(Speed);
             } catch (InterruptedException e) {
                 e.printStackTrace();
+            } catch (Exception exception) {
+                break;
             }
         }
     }
-
 }
+

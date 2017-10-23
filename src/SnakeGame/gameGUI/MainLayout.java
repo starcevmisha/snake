@@ -1,13 +1,18 @@
-package SnakeGame.gui;
+package SnakeGame.gameGUI;
 
 import SnakeGame.Game;
 import SnakeGame.Main;
 
 import javax.swing.*;
 import java.awt.*;
+import java.util.Random;
+
+import static java.lang.Math.abs;
 
 public class MainLayout extends JPanel {
+    private Random random = new Random();
     private Game game;
+    private Color[] superFoodColor = new Color[]{Color.BLACK, Color.BLUE, Color.WHITE, Color.pink};
 
     public MainLayout(Game game) {
         this.game = game;
@@ -21,17 +26,25 @@ public class MainLayout extends JPanel {
     @Override
     public void paint(Graphics g) {
         super.paint(g);
-//        drawGrid(g);
+        drawGrid(g);
 
         for (Point point : game.wall.getWallMap()) {
             paint_point(g, point, Color.DARK_GRAY);
         }
-
-        paint_point(g, game.food, Color.magenta);
+        if (game.food.type == 1)
+            paint_point(g, game.food, Color.magenta);
+        else if (game.food.type == 2)
+            paint_point(g, game.food, Color.ORANGE);
+        else if (game.food.type == 3)
+            paint_point(g, game.food, Color.RED);
+        else
+            paint_point(g, game.food, Color.GREEN);
 
         for (Point point : game.snake.getBody()) {
             paint_point(g, point, Color.GREEN);
         }
+        if (game.superFood.isVisible)
+            paint_point(g, game.superFood, superFoodColor[abs(random.nextInt()) % 4]);
 
         paint_circle(g, game.snake.getBody().get(0), Color.black);
 

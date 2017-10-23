@@ -1,4 +1,4 @@
-package SnakeGame.gui;
+package SnakeGame.gameGUI;
 
 import SnakeGame.Direction;
 import SnakeGame.Game;
@@ -7,9 +7,9 @@ import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 
 public class KeyController extends KeyAdapter {
-    Game game;
+    private Game game;
 
-    public KeyController(Game game) {
+    KeyController(Game game) {
         this.game = game;
     }
 
