@@ -51,7 +51,6 @@ public class Game {
                 superFood.setVisible();
         if (superFood.isVisible)
             superFood.check();
-
     }
 
     public void reset() {
