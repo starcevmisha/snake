@@ -11,7 +11,7 @@ import java.util.Random;
 public class Game {
     public SuperFood superFood;
     public static boolean isGameOver = false;
-    public static boolean isPaused = true;
+    public static boolean isPaused = false;
     public int score = 0;
     public Snake snake;
     public Food food;
@@ -27,7 +27,7 @@ public class Game {
         wall = new Wall(Level);
     }
 
-    public void oneStep() {
+    void oneStep() {
         Point head = snake.move(direction);
         Game.isGameOver =
                 snake.isLoop() || wall.isIntersectWith(head);
@@ -37,7 +37,6 @@ public class Game {
             score += food.type;
             if (food.type == 4)
                 score += 10;
-            System.out.println(123);
             snake.extend(oldPointFood);
             newFood();
         }
@@ -64,13 +63,13 @@ public class Game {
         direction = Direction.Right;
     }
 
-    void newFood() {
+    private void newFood() {
         while (snake.isIntersectWith(food)
                 || wall.isIntersectWith(food))
             food.nextFood();
     }
 
-    void newSuperFood() {
+    private void newSuperFood() {
         while (snake.isIntersectWith(superFood)
                 || wall.isIntersectWith(superFood))
             superFood.nextFood();

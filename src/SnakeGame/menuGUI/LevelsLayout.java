@@ -8,15 +8,14 @@ import SnakeGame.menuGUI.LevelCreator.LevelCreatorWindow;
 import javax.swing.*;
 import javax.swing.border.TitledBorder;
 import java.awt.*;
-import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.Objects;
 
 
-public class LevelsLayout extends JPanel {
+class LevelsLayout extends JPanel {
     private static final int SIDE = 2;
 
-    public LevelsLayout(Main main) {
+    LevelsLayout(Main main) {
         setPreferredSize(new Dimension(600, 400));
         setBackground(Color.BLACK);
 
@@ -35,17 +34,15 @@ public class LevelsLayout extends JPanel {
 
         btnPannel.setBackground(Color.BLACK);
 
-        ActionListener listener = new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                if (Objects.equals(e.getActionCommand(), "Level 1"))
-                    Game.Level = 1;
-                if (Objects.equals(e.getActionCommand(), "Level 2"))
-                    Game.Level = 2;
-                if (Objects.equals(e.getActionCommand(), "Level 3"))
-                    Game.Level = 3;
-                if (Objects.equals(e.getActionCommand(), "Create level"))
-                    new LevelCreatorWindow(main);
-            }
+        ActionListener listener = e -> {
+            if (Objects.equals(e.getActionCommand(), "Level 1"))
+                Game.Level = 1;
+            if (Objects.equals(e.getActionCommand(), "Level 2"))
+                Game.Level = 2;
+            if (Objects.equals(e.getActionCommand(), "Level 3"))
+                Game.Level = 3;
+            if (Objects.equals(e.getActionCommand(), "Create level"))
+                new LevelCreatorWindow(main);
         };
 
 
@@ -74,7 +71,5 @@ public class LevelsLayout extends JPanel {
         btnPannel.add(btn);
 
         add(btnPannel, BorderLayout.CENTER);
-
-
     }
 }

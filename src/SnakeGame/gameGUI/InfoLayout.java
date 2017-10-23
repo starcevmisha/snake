@@ -22,7 +22,6 @@ public class InfoLayout extends JPanel {
         super.paint(g);
         g.setColor(Color.GREEN);
 
-
         g.setFont(LARGE_FONT);
         g.drawString(
                 "The Snake Game",

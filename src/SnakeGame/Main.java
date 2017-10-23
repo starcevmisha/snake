@@ -15,11 +15,8 @@ public class Main implements Runnable {
     static final int snakeLength = 5;
     private static final int Speed = 150;
 
-
-
     public static void main(String[] args) {
         new StartMenu(new Main());
-//        new Main().run();
     }
 
     public void run() {
@@ -40,10 +37,10 @@ public class Main implements Runnable {
                 Thread.sleep(Speed);
             } catch (InterruptedException e) {
                 e.printStackTrace();
+            } catch (Exception exception) {
+                break;
             }
         }
     }
-
-
 }
 

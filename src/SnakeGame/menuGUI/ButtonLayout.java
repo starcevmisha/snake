@@ -7,8 +7,8 @@ import javax.swing.*;
 import javax.swing.border.LineBorder;
 import java.awt.*;
 
-public class ButtonLayout extends JPanel {
-    public ButtonLayout(JFrame parrentFrame, Main main) {
+class ButtonLayout extends JPanel {
+    ButtonLayout(JFrame parentFrame, Main main) {
         Font MEDIUM_FONT = new Font("Tahoma", Font.BOLD, 16);
         setPreferredSize(new Dimension(200, 800));
         setBackground(Color.BLACK);
@@ -23,7 +23,7 @@ public class ButtonLayout extends JPanel {
         startButton.setForeground(Color.green);
         startButton.setOpaque(true);
         startButton.addActionListener(e -> {
-            parrentFrame.setVisible(false);
+            parentFrame.setVisible(false);
             Thread myThread = new Thread(main);
             myThread.start();
         });
@@ -38,14 +38,7 @@ public class ButtonLayout extends JPanel {
         exitButton.setFont(MEDIUM_FONT);
         exitButton.setForeground(Color.green);
         exitButton.setOpaque(true);
-        exitButton.addActionListener(e -> {
-            System.exit(0);
-        });
+        exitButton.addActionListener(e -> System.exit(0));
         add(exitButton);
-
-
-
-
-
     }
 }

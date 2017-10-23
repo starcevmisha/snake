@@ -6,7 +6,8 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class Wall {
-    String[] wallMap1 = {
+    private static boolean isSet = false;
+    private String[] wallMap1 = {
             "11100000000000000111",
             "10000000000000000001",
             "10000000000000000001",
@@ -28,7 +29,7 @@ public class Wall {
             "10000000000000000001",
             "11100000000000000111"
     };
-    String[] wallMap2 = {
+    private String[] wallMap2 = {
             "11100000000000000111",
             "10000000000000000001",
             "10000000000000000001",
@@ -50,7 +51,7 @@ public class Wall {
             "10000000000000000001",
             "11100000000000000111"
     };
-    String[] wallMap3 = {
+    private String[] wallMap3 = {
             "11111111111111111111",
             "00000000000000000000",
             "00010000000000001000",
@@ -72,22 +73,15 @@ public class Wall {
             "00000000000000000000",
             "11111111111111111111"
     };
-    static boolean isSeted = false;
-
-
     private static ArrayList<Point> wallList = new ArrayList<>();
-    Map wallMapDict = new HashMap<Integer, String[]>() {{
-        put(1, wallMap1);
-        put(2, wallMap2);
-        put(3, wallMap3);
-    }};
-    int a = 3;
 
-
-
-    //TODO редактор уровней, яблоки рандома с разными очками, супер еда
     public Wall(int level) {
-        if (!isSeted) {
+        if (!isSet) {
+            Map wallMapDict = new HashMap<Integer, String[]>() {{
+                put(1, wallMap1);
+                put(2, wallMap2);
+                put(3, wallMap3);
+            }};
             String[] wallMap = (String[]) wallMapDict.get(level);
             for (int i = 0; i < wallMap.length; i++)
                 for (int j = 0; j < wallMap[0].length(); j++)
@@ -101,9 +95,8 @@ public class Wall {
             for (int j = 0; j < map[0].length; j++)
                 if (map[j][i])
                     wallList.add(new Point(j, i));
-        isSeted = true;
+        isSet = true;
     }
-
 
     public boolean isIntersectWith(Point p) {
         for (Point point : wallList) {

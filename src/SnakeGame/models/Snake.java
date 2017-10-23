@@ -47,7 +47,6 @@ public class Snake {
     }
 
     public void extend(Point point) {
-
         body.add(0, point);
     }
 

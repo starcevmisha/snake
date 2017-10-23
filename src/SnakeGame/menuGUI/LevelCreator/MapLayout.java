@@ -6,9 +6,9 @@ import javax.swing.*;
 import java.awt.*;
 
 public class MapLayout extends JPanel {
-    boolean[][] map;
+    private boolean[][] map;
 
-    public MapLayout(boolean[][] map) {
+    MapLayout(boolean[][] map) {
         this.map = map;
         setBackground(Color.BLACK);
     }
@@ -32,7 +32,5 @@ public class MapLayout extends JPanel {
                         Main.CELL_SIZE, Main.CELL_SIZE);
             }
         }
-
     }
-
 }

@@ -8,7 +8,7 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
 public class LevelCreatorWindow extends JFrame {
-    public boolean[][] map;
+    boolean[][] map;
 
     public LevelCreatorWindow(Main main) {
         super("Create Level");
@@ -18,13 +18,11 @@ public class LevelCreatorWindow extends JFrame {
 
         map = new boolean[Main.WIDTH][Main.HEIGHT];
 
-
         ButtonLayout buttonLayout = new ButtonLayout(this, main);
 
         getContentPane().add(BorderLayout.EAST, buttonLayout);
         MapLayout mapLayout = new MapLayout(map);
         getContentPane().add(BorderLayout.CENTER, mapLayout);
-
 
         addMouseListener(new MouseAdapter() {
             @Override
@@ -34,7 +32,6 @@ public class LevelCreatorWindow extends JFrame {
                 mapLayout.repaint();
             }
         });
-
 
         setVisible(true);
     }

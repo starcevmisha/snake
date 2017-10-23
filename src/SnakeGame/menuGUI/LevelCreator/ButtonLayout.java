@@ -8,8 +8,8 @@ import javax.swing.*;
 import javax.swing.border.LineBorder;
 import java.awt.*;
 
-public class ButtonLayout extends JPanel {
-    public ButtonLayout(LevelCreatorWindow levelCreatorWindow, Main main) {
+class ButtonLayout extends JPanel {
+    ButtonLayout(LevelCreatorWindow levelCreatorWindow, Main main) {
         Font MEDIUM_FONT = new Font("Tahoma", Font.BOLD, 16);
         setPreferredSize(new Dimension(200, 800));
         setBackground(Color.BLACK);
@@ -32,7 +32,6 @@ public class ButtonLayout extends JPanel {
         });
         add(startButton);
 
-
         JButton exitButton = new JButton("Close Game");
         exitButton.setPreferredSize(new Dimension(140, 40));
         exitButton.setBackground(Color.black);
@@ -41,11 +40,7 @@ public class ButtonLayout extends JPanel {
         exitButton.setFont(MEDIUM_FONT);
         exitButton.setForeground(Color.green);
         exitButton.setOpaque(true);
-        exitButton.addActionListener(e -> {
-            System.exit(0);
-        });
+        exitButton.addActionListener(e -> System.exit(0));
         add(exitButton);
-
-
     }
 }
