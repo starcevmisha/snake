@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
-public class Wall {
+public class Border {
     private static boolean isSet = false;
     private String[] wallMap1 = {
             "11100000000000000111",
@@ -75,7 +75,7 @@ public class Wall {
     };
     private static ArrayList<Point> wallList = new ArrayList<>();
 
-    public Wall(int level) {
+    public Border(int level) {
         if (!isSet) {
             Map wallMapDict = new HashMap<Integer, String[]>() {{
                 put(1, wallMap1);

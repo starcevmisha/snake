@@ -61,7 +61,6 @@ public class Snake {
         Point head = new Point(x, y);
         body.add(0, head);
         return head;
-
     }
 }
 

@@ -28,7 +28,7 @@ public class MainLayout extends JPanel {
         super.paint(g);
         drawGrid(g);
 
-        for (Point point : game.wall.getWallMap()) {
+        for (Point point : game.border.getWallMap()) {
             paint_point(g, point, Color.DARK_GRAY);
         }
         if (game.food.type == 1)
@@ -43,7 +43,7 @@ public class MainLayout extends JPanel {
         for (Point point : game.snake.getBody()) {
             paint_point(g, point, Color.GREEN);
         }
-        if (game.superFood.isVisible)
+        if (game.superFood.visible)
             paint_point(g, game.superFood, superFoodColor[abs(random.nextInt()) % 4]);
 
         paint_circle(g, game.snake.getBody().get(0), Color.black);

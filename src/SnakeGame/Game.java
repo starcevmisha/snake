@@ -1,9 +1,9 @@
 package SnakeGame;
 
+import SnakeGame.models.Border;
 import SnakeGame.models.Food;
 import SnakeGame.models.Snake;
 import SnakeGame.models.SuperFood;
-import SnakeGame.models.Wall;
 
 import java.awt.*;
 import java.util.Random;
@@ -16,7 +16,7 @@ public class Game {
     public Snake snake;
     public Food food;
     private Random random = new Random();
-    public Wall wall;
+    public Border border;
     public Direction direction = Direction.Right;
     public static int Level = 1;
 
@@ -24,13 +24,13 @@ public class Game {
         snake = new Snake(10, 10, Main.snakeLength);
         food = new Food();
         superFood = new SuperFood();
-        wall = new Wall(Level);
+        border = new Border(Level);
     }
 
     void oneStep() {
         Point head = snake.move(direction);
         Game.isGameOver =
-                snake.isLoop() || wall.isIntersectWith(head);
+                snake.isLoop() || border.isIntersectWith(head);
 
         Point oldPointFood = new Point((int) food.getX(), (int) food.getY());
         if (food.isEaten(head)) {
@@ -44,12 +44,12 @@ public class Game {
             snake.cut();
             score -= 20;
             newSuperFood();
-            superFood.isVisible = false;
+            superFood.visible = false;
         }
-        if (!superFood.isVisible)
+        if (!superFood.visible)
             if (random.nextInt() % superFood.probability == 0)
                 superFood.setVisible();
-        if (superFood.isVisible)
+        if (superFood.visible)
             superFood.check();
     }
 
@@ -64,13 +64,13 @@ public class Game {
 
     private void newFood() {
         while (snake.isIntersectWith(food)
-                || wall.isIntersectWith(food))
+                || border.isIntersectWith(food))
             food.nextFood();
     }
 
     private void newSuperFood() {
         while (snake.isIntersectWith(superFood)
-                || wall.isIntersectWith(superFood))
+                || border.isIntersectWith(superFood))
             superFood.nextFood();
     }
 }

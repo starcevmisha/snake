@@ -1,8 +1,8 @@
 package SnakeGame.models;
 
 public class SuperFood extends Food {
-    public int probability = 130;
-    public boolean isVisible = false;
+    public final int probability = 120;
+    public boolean visible = false;
     private int time = 0;
 
     public SuperFood() {
@@ -11,13 +11,13 @@ public class SuperFood extends Food {
     }
 
     public void setVisible() {
-        isVisible = true;
+        visible = true;
         time = 50;
     }
 
     public void check() {
         time--;
         if (time <= 0)
-            isVisible = false;
+            visible = false;
     }
 }

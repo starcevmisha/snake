@@ -2,7 +2,7 @@ package SnakeGame.menuGUI.LevelCreator;
 
 
 import SnakeGame.Main;
-import SnakeGame.models.Wall;
+import SnakeGame.models.Border;
 
 import javax.swing.*;
 import javax.swing.border.LineBorder;
@@ -25,7 +25,7 @@ class ButtonLayout extends JPanel {
         startButton.setOpaque(true);
         startButton.addActionListener(e -> {
 
-            Wall.setCustomMap(levelCreatorWindow.map);
+            Border.setCustomMap(levelCreatorWindow.map);
             Thread myThread = new Thread(main);
             myThread.start();
             levelCreatorWindow.setVisible(false);
