@@ -28,7 +28,7 @@ public class MainLayout extends JPanel {
         super.paint(g);
         drawGrid(g);
 
-        for (Point point : game.border.getWallMap()) {
+        for (Point point : game.border.getBorderList()) {
             paint_point(g, point, Color.DARK_GRAY);
         }
         if (game.food.type == 1)
