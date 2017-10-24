@@ -40,13 +40,13 @@ public class MainLayout extends JPanel {
         else
             paint_point(g, game.food, Color.GREEN);
 
-        for (Point point : game.snake.getContainment()) {
+        for (Point point : game.snake.getBody()) {
             paint_point(g, point, Color.GREEN);
         }
         if (game.superFood.visible)
             paint_point(g, game.superFood, superFoodColor[abs(random.nextInt()) % 4]);
 
-        paint_circle(g, game.snake.getContainment().get(0), Color.black);
+        paint_circle(g, game.snake.getBody().get(0), Color.black);
 
         if (Game.isGameOver) {
             g.setColor(Color.red);

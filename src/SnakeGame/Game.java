@@ -41,7 +41,7 @@ public class Game {
             food.move();
         }
         if (superFood.isEaten(head)) {
-            snake.cut();
+            snake.cut(5);
             score -= 20;
             superFood.move();
             superFood.visible = false;
@@ -56,6 +56,7 @@ public class Game {
     public void reset() {
         snake = new Snake(10, 10, Main.snakeLength);
         food = new Food(border, snake);
+        superFood = new SuperFood(border, snake);
         score = 0;
         food.move();
         isGameOver = false;
