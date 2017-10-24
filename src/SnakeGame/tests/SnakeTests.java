@@ -50,7 +50,7 @@ class SnakeTests {
         for (int i = 0; i < 20; i++) {
             snake.extend(new Point(i, -i));
         }
-        assertEquals(snake.getBody().size(), 35);
+        assertEquals(snake.getContainment().size(), 35);
     }
 
 }

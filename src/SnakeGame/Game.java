@@ -23,8 +23,8 @@ public class Game {
     public Game() {
         snake = new Snake(10, 10, Main.snakeLength);
         border = new Border(Level);
-        food = new Food(border, snake);
-        superFood = new SuperFood(border, snake);
+        food = new Food(this.border, this.snake);
+        superFood = new SuperFood(this.border, this.snake);
     }
 
     void oneStep() {
@@ -55,6 +55,7 @@ public class Game {
 
     public void reset() {
         snake = new Snake(10, 10, Main.snakeLength);
+        food = new Food(border, snake);
         score = 0;
         food.move();
         isGameOver = false;
