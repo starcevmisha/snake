@@ -2,12 +2,10 @@ package SnakeGame.models;
 
 import java.awt.*;
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Map;
 
 public class Border {
     private static boolean isSet = false;
-    private String[] wallMap1 = {
+    private String[] borderMap1 = {
             "11100000000000000111",
             "10000000000000000001",
             "10000000000000000001",
@@ -29,7 +27,7 @@ public class Border {
             "10000000000000000001",
             "11100000000000000111"
     };
-    private String[] wallMap2 = {
+    private String[] borderMap2 = {
             "11100000000000000111",
             "10000000000000000001",
             "10000000000000000001",
@@ -51,7 +49,7 @@ public class Border {
             "10000000000000000001",
             "11100000000000000111"
     };
-    private String[] wallMap3 = {
+    private String[] borderMap3 = {
             "11111111111111111111",
             "00000000000000000000",
             "00010000000000001000",
@@ -77,17 +75,21 @@ public class Border {
 
     public Border(int level) {
         if (!isSet) {
-            Map wallMapDict = new HashMap<Integer, String[]>() {{
-                put(1, wallMap1);
-                put(2, wallMap2);
-                put(3, wallMap3);
+            ArrayList<String[]> borderMaps = new ArrayList<>() {{
+                add(borderMap1);
+                add(borderMap2);
+                add(borderMap3);
             }};
-            String[] wallMap = (String[]) wallMapDict.get(level);
-            for (int i = 0; i < wallMap.length; i++)
-                for (int j = 0; j < wallMap[0].length(); j++)
-                    if (wallMap[i].charAt(j) == '1')
-                        wallList.add(new Point(j, i));
+            String[] wallMap = borderMaps.get(level - 1);
+            this.fillMap(wallMap);
         }
+    }
+
+    private void fillMap(String[] wallMap) {
+        for (int i = 0; i < wallMap.length; i++)
+            for (int j = 0; j < wallMap[i].length(); j++)
+                if (wallMap[i].charAt(j) == '1')
+                    wallList.add(new Point(j, i));
     }
 
     public static void setCustomMap(boolean[][] map) {
