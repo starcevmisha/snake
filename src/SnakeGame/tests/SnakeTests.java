@@ -39,7 +39,7 @@ class SnakeTests {
     void testFoodEaten() {
         Snake snake = new Snake(10, 10, 10);
         Food food = new Food();
-        food.setXY(11, 10);
+        food.setCoordinates(11, 10);
         Point head = snake.move(Direction.Right);
         assertTrue(food.isEaten(head));
     }

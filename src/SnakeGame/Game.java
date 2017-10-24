@@ -22,9 +22,9 @@ public class Game {
 
     public Game() {
         snake = new Snake(10, 10, Main.snakeLength);
-        food = new Food();
-        superFood = new SuperFood();
         border = new Border(Level);
+        food = new Food(border, snake);
+        superFood = new SuperFood(border, snake);
     }
 
     void oneStep() {
@@ -38,12 +38,12 @@ public class Game {
             if (food.type == 4)
                 score += 10;
             snake.extend(oldPointFood);
-            newFood();
+            food.move();
         }
         if (superFood.isEaten(head)) {
             snake.cut();
             score -= 20;
-            newSuperFood();
+            superFood.move();
             superFood.visible = false;
         }
         if (!superFood.visible)
@@ -56,21 +56,9 @@ public class Game {
     public void reset() {
         snake = new Snake(10, 10, Main.snakeLength);
         score = 0;
-        newFood();
+        food.move();
         isGameOver = false;
         isPaused = false;
         direction = Direction.Right;
-    }
-
-    private void newFood() {
-        while (snake.isIntersectWith(food)
-                || border.isIntersectWith(food))
-            food.nextFood();
-    }
-
-    private void newSuperFood() {
-        while (snake.isIntersectWith(superFood)
-                || border.isIntersectWith(superFood))
-            superFood.nextFood();
     }
 }

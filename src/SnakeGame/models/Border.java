@@ -98,10 +98,10 @@ public class Border {
         isSet = true;
     }
 
-    public boolean isIntersectWith(Point p) {
-        for (Point point : wallList) {
-            if ((int) point.getX() == (int) p.getX()
-                    && (int) point.getY() == (int) p.getY())
+    public boolean isIntersectWith(Point point) {
+        for (Point bodyPoint : wallList) {
+            if ((int) bodyPoint.getX() == (int) point.getX()
+                    && (int) bodyPoint.getY() == (int) point.getY())
                 return true;
         }
         return false;

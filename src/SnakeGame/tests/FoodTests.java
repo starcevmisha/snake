@@ -16,7 +16,7 @@ class FoodTests {
     @Test
     void testSet() {
         Food food = new Food();
-        food.setXY((int) pow(10, 100),
+        food.setCoordinates((int) pow(10, 100),
                 -(int) pow(10, 100));
         assertEquals((int) pow(10, 100), food.x);
         assertEquals((int) pow(10, 100) * -1, food.y);

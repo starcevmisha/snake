@@ -5,9 +5,12 @@ public class SuperFood extends Food {
     public boolean visible = false;
     private int time = 0;
 
+    public SuperFood(Border border, Snake snake) {
+        super(border, snake);
+    }
+
     public SuperFood() {
-        x = 12;
-        y = 6;
+        super();
     }
 
     public void setVisible() {
