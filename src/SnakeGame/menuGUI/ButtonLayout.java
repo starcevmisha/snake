@@ -23,7 +23,7 @@ class ButtonLayout extends JPanel {
         startButton.setForeground(Color.green);
         startButton.setOpaque(true);
         startButton.addActionListener(e -> {
-            parentFrame.setVisible(false);
+//            parentFrame.setVisible(false);
             Thread myThread = new Thread(main);
             myThread.start();
         });

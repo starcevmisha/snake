@@ -11,7 +11,7 @@ import java.util.Map;
 public class Wall {
     private static boolean isSet = false;
 
-    private static ArrayList<Point> wallList = new ArrayList<>();
+    public static ArrayList<Point> wallList = new ArrayList<>();
 
     public Wall(int levelNum) {
         if (!isSet) {
@@ -23,6 +23,7 @@ public class Wall {
             }
 
             String[] wallMap = wallMapDict.get(levelNum);
+            wallList = new ArrayList<>();
             for (int i = 0; i < wallMap.length; i++)
                 for (int j = 0; j < wallMap[0].length(); j++)
                     if (wallMap[i].charAt(j) == '1')
@@ -31,6 +32,7 @@ public class Wall {
     }
 
     public static void setCustomMap(boolean[][] map) {
+        wallList = new ArrayList<>();
         for (int i = 0; i < map.length; i++)
             for (int j = 0; j < map[0].length; j++)
                 if (map[j][i])

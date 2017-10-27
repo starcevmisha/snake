@@ -50,12 +50,6 @@ class LevelsLayout extends JPanel {
                         Game.levelNum = i + 1;
                 }
             }
-//                if (Objects.equals(e.getActionCommand(), "level 1"))
-//                Game.levelNum = 1;
-//            else if (Objects.equals(e.getActionCommand(), "level 2"))
-//                Game.levelNum = 2;
-//            else if (Objects.equals(e.getActionCommand(), "level 3"))
-//                Game.levelNum = 3;
         };
 
 

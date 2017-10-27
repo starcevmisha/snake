@@ -8,7 +8,6 @@ import SnakeGame.serial.JsonLevels;
 import javax.swing.*;
 import javax.swing.border.LineBorder;
 import java.awt.*;
-import java.io.IOException;
 
 class ButtonLayout extends JPanel {
     ButtonLayout(LevelCreatorWindow levelCreatorWindow, Main main) {
@@ -17,20 +16,17 @@ class ButtonLayout extends JPanel {
         setBackground(Color.BLACK);
         setLayout(null);
 
+        int startPosX = 90;
+
         JButton startButton = new JButton("Start Game");
         startButton.setPreferredSize(new Dimension(140, 40));
-        startButton.setBounds(30, 80, 140, 40);
+        startButton.setBounds(30, startPosX, 140, 40);
         startButton.setBackground(Color.black);
         startButton.setBorder(new LineBorder(Color.green));
         startButton.setFont(MEDIUM_FONT);
         startButton.setForeground(Color.green);
         startButton.setOpaque(true);
         startButton.addActionListener(e -> {
-            try {
-                JsonLevels.addLevel("newLevel", levelCreatorWindow.map);
-            } catch (IOException e1) {
-                e1.printStackTrace();
-            }
             Wall.setCustomMap(levelCreatorWindow.map);
             Thread myThread = new Thread(main);
             myThread.start();
@@ -38,10 +34,27 @@ class ButtonLayout extends JPanel {
         });
         add(startButton);
 
+        JButton saveButton = new JButton("Save Level");
+        saveButton.setPreferredSize(new Dimension(140, 40));
+        saveButton.setBounds(30, startPosX + 70, 140, 40);
+        saveButton.setBackground(Color.black);
+        saveButton.setBorder(new LineBorder(Color.green));
+        saveButton.setFont(MEDIUM_FONT);
+        saveButton.setForeground(Color.green);
+        saveButton.setOpaque(true);
+        saveButton.addActionListener(e -> {
+            String levelName = JOptionPane.showInputDialog("Enter Level Name");
+            JsonLevels.addLevel(levelName, levelCreatorWindow.map);
+        });
+
+        add(saveButton);
+
+
+
         JButton exitButton = new JButton("Close Game");
         exitButton.setPreferredSize(new Dimension(140, 40));
         exitButton.setBackground(Color.black);
-        exitButton.setBounds(30, 150, 140, 40);
+        exitButton.setBounds(30, startPosX + 140, 140, 40);
         exitButton.setBorder(new LineBorder(Color.green));
         exitButton.setFont(MEDIUM_FONT);
         exitButton.setForeground(Color.green);

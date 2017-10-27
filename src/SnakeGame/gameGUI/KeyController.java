@@ -3,14 +3,17 @@ package SnakeGame.gameGUI;
 import SnakeGame.Direction;
 import SnakeGame.Game;
 
+import javax.swing.*;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 
 public class KeyController extends KeyAdapter {
+    private JFrame gameWindow;
     private Game game;
 
-    KeyController(Game game) {
+    KeyController(Game game, JFrame gameWindow) {
         this.game = game;
+        this.gameWindow = gameWindow;
     }
 
     @Override
@@ -47,6 +50,7 @@ public class KeyController extends KeyAdapter {
             case KeyEvent.VK_ENTER:
                 game.reset();
                 break;
+
         }
     }
 }

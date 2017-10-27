@@ -39,17 +39,21 @@ public class JsonLevels {
         return levels;
     }
 
-    public static void addLevel(String name, String[] map) throws IOException {
+    public static void addLevel(String name, String[] map) {
         List<Level> levels = extractLevels();
         levels.add(new Level(name, map));
         Gson gson = new Gson();
         gson.toJson(levels);
-        Files.write(
-                Paths.get("src\\SnakeGame\\serial\\levels.json"),
-                gson.toJson(levels).getBytes());
+        try {
+            Files.write(
+                    Paths.get("src\\SnakeGame\\serial\\levels.json"),
+                    gson.toJson(levels).getBytes());
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
-    public static void addLevel(String name, boolean[][] map) throws IOException {
+    public static void addLevel(String name, boolean[][] map) {
         String[] res = new String[map.length];
         for (int i = 0; i < map.length; i++) {
             StringBuilder temp = new StringBuilder();

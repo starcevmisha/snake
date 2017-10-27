@@ -36,7 +36,8 @@ public class Main implements Runnable {
             try {
                 Thread.sleep(Speed);
             } catch (InterruptedException e) {
-                e.printStackTrace();
+                Thread.currentThread().interrupt();
+                return;
             } catch (Exception exception) {
                 break;
             }
