@@ -18,13 +18,13 @@ public class Game {
     private Random random = new Random();
     public Wall wall;
     public Direction direction = Direction.Right;
-    public static int Level = 1;
+    public static int levelNum = 1;
 
     public Game() {
         snake = new Snake(10, 10, Main.snakeLength);
         food = new Food();
         superFood = new SuperFood();
-        wall = new Wall(Level);
+        wall = new Wall(levelNum);
     }
 
     void oneStep() {
@@ -40,15 +40,17 @@ public class Game {
             snake.extend(oldPointFood);
             newFood();
         }
-        if (superFood.isEaten(head)) {
+        if (superFood.isEaten(head) && superFood.isVisible) {
             snake.cut();
             score -= 20;
             newSuperFood();
             superFood.isVisible = false;
         }
         if (!superFood.isVisible)
-            if (random.nextInt() % superFood.probability == 0)
+            if (random.nextInt() % superFood.probability == 0) {
                 superFood.setVisible();
+                newSuperFood();
+            }
         if (superFood.isVisible)
             superFood.check();
 

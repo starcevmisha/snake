@@ -10,7 +10,7 @@ public class StartMenu extends JFrame {
     public StartMenu(Main main) {
         super("MENU");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setSize(650, 400);
+        setSize(900, 400);
         setLocation(200, 100);
 
         Font LARGE_FONT = new Font("Tahoma", Font.BOLD, 35);

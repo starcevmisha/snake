@@ -3,10 +3,12 @@ package SnakeGame.menuGUI.LevelCreator;
 
 import SnakeGame.Main;
 import SnakeGame.models.Wall;
+import SnakeGame.serial.JsonLevels;
 
 import javax.swing.*;
 import javax.swing.border.LineBorder;
 import java.awt.*;
+import java.io.IOException;
 
 class ButtonLayout extends JPanel {
     ButtonLayout(LevelCreatorWindow levelCreatorWindow, Main main) {
@@ -24,7 +26,11 @@ class ButtonLayout extends JPanel {
         startButton.setForeground(Color.green);
         startButton.setOpaque(true);
         startButton.addActionListener(e -> {
-
+            try {
+                JsonLevels.addLevel("newLevel", levelCreatorWindow.map);
+            } catch (IOException e1) {
+                e1.printStackTrace();
+            }
             Wall.setCustomMap(levelCreatorWindow.map);
             Thread myThread = new Thread(main);
             myThread.start();

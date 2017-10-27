@@ -4,29 +4,33 @@ package SnakeGame.menuGUI;
 import SnakeGame.Game;
 import SnakeGame.Main;
 import SnakeGame.menuGUI.LevelCreator.LevelCreatorWindow;
+import SnakeGame.serial.JsonLevels;
 
 import javax.swing.*;
 import javax.swing.border.TitledBorder;
 import java.awt.*;
 import java.awt.event.ActionListener;
+import java.util.List;
 import java.util.Objects;
+
+import static SnakeGame.serial.JsonLevels.extractLevels;
 
 
 class LevelsLayout extends JPanel {
     private static final int SIDE = 2;
 
     LevelsLayout(Main main) {
-        setPreferredSize(new Dimension(600, 400));
+        setPreferredSize(new Dimension(900, 400));
         setBackground(Color.BLACK);
 
         Font MEDIUM_FONT = new Font("Tahoma", Font.BOLD, 20);
 
         ButtonGroup btnGroup = new ButtonGroup();
 
-        JPanel btnPannel = new JPanel(new GridLayout(2, 2));
+        JPanel btnPannel = new JPanel(new GridLayout(0, 3));
         btnPannel.setBorder((BorderFactory.createTitledBorder(BorderFactory
                         .createLineBorder(Color.GREEN),
-                "Choose Level", TitledBorder.LEFT,
+                "Choose level", TitledBorder.LEFT,
                 TitledBorder.DEFAULT_POSITION,
                 new Font("tahoma", Font.PLAIN, 16),
                 Color.GREEN))
@@ -34,20 +38,29 @@ class LevelsLayout extends JPanel {
 
         btnPannel.setBackground(Color.BLACK);
 
+
+        List<JsonLevels.Level> levels = extractLevels();
+
         ActionListener listener = e -> {
-            if (Objects.equals(e.getActionCommand(), "Level 1"))
-                Game.Level = 1;
-            if (Objects.equals(e.getActionCommand(), "Level 2"))
-                Game.Level = 2;
-            if (Objects.equals(e.getActionCommand(), "Level 3"))
-                Game.Level = 3;
             if (Objects.equals(e.getActionCommand(), "Create level"))
                 new LevelCreatorWindow(main);
+            else {
+                for (int i = 0; i < levels.size(); i++) {
+                    if (Objects.equals(e.getActionCommand(), levels.get(i).name))
+                        Game.levelNum = i + 1;
+                }
+            }
+//                if (Objects.equals(e.getActionCommand(), "level 1"))
+//                Game.levelNum = 1;
+//            else if (Objects.equals(e.getActionCommand(), "level 2"))
+//                Game.levelNum = 2;
+//            else if (Objects.equals(e.getActionCommand(), "level 3"))
+//                Game.levelNum = 3;
         };
 
 
-        for (int i = 0; i < SIDE * SIDE - 1; i++) {
-            JToggleButton btn = new JToggleButton("Level " + (i + 1));
+        for (int i = 0; i < levels.size(); i++) {
+            JToggleButton btn = new JToggleButton(levels.get(i).name);
             ImageIcon level1Ico = new ImageIcon(String.format("src\\SnakeGame\\menuGUI\\levels_ico\\level_%s.png", i + 1));
             btn.setIcon(level1Ico);
             btn.setSize(100, 100);
