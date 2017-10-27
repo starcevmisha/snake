@@ -9,7 +9,7 @@ import java.awt.*;
 public class StartMenu extends JFrame {
     public StartMenu(Main main) {
         super("MENU");
-//        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setSize(900, 400);
         setLocation(200, 100);
 
