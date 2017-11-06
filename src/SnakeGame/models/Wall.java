@@ -10,7 +10,7 @@ import java.util.Map;
 
 public class Wall {
 
-    public static ArrayList<Point> wallList = new ArrayList<>();
+    private static ArrayList<Point> wallList = new ArrayList<>();
 
     public Wall(int levelNum) {
 
@@ -39,10 +39,10 @@ public class Wall {
                     wallList.add(new Point(j, i));
     }
 
-    public boolean isIntersectWith(Point p) {
+    public boolean isIntersectWith(Point other) {
         for (Point point : wallList) {
-            if ((int) point.getX() == (int) p.getX()
-                    && (int) point.getY() == (int) p.getY())
+            if ((int) point.getX() == (int) other.getX()
+                    && (int) point.getY() == (int) other.getY())
                 return true;
         }
         return false;

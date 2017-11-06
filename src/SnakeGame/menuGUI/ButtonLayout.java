@@ -31,7 +31,6 @@ class ButtonLayout extends JPanel {
         });
         add(startButton);
 
-
         JButton exitButton = new JButton("Close Game");
         exitButton.setPreferredSize(new Dimension(140, 40));
         exitButton.setBackground(Color.black);

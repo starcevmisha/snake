@@ -17,13 +17,13 @@ import static SnakeGame.serial.JsonLevels.extractLevels;
 
 
 class LevelsLayout extends JPanel {
-    private static final int SIDE = 2;
+    //private static final int SIDE = 2;
 
     LevelsLayout(Main main) {
         setPreferredSize(new Dimension(900, 400));
         setBackground(Color.BLACK);
 
-        Font MEDIUM_FONT = new Font("Tahoma", Font.BOLD, 20);
+        //Font MEDIUM_FONT = new Font("Tahoma", Font.BOLD, 20);
 
         ButtonGroup btnGroup = new ButtonGroup();
 
@@ -38,7 +38,6 @@ class LevelsLayout extends JPanel {
 
         btnPannel.setBackground(Color.BLACK);
 
-
         List<JsonLevels.Level> levels = extractLevels();
 
         ActionListener listener = e -> {
@@ -46,7 +45,8 @@ class LevelsLayout extends JPanel {
                 new LevelCreatorWindow(main);
             else {
                 for (int i = 0; i < levels.size(); i++) {
-                    if (Objects.equals(e.getActionCommand(), levels.get(i).name))
+                    if (Objects.equals(e.getActionCommand(),
+                            levels.get(i).name))
                         Game.levelNum = i + 1;
                 }
             }
@@ -55,7 +55,9 @@ class LevelsLayout extends JPanel {
 
         for (int i = 0; i < levels.size(); i++) {
             JToggleButton btn = new JToggleButton(levels.get(i).name);
-            ImageIcon level1Ico = new ImageIcon(String.format("src\\SnakeGame\\menuGUI\\levels_ico\\level_%s.png", i + 1));
+            ImageIcon level1Ico = new ImageIcon(String.format(
+                    "src\\SnakeGame\\menuGUI\\levels_ico\\level_%s.png",
+                    i + 1));
             btn.setIcon(level1Ico);
             btn.setSize(100, 100);
 
@@ -67,7 +69,8 @@ class LevelsLayout extends JPanel {
         }
 
         JToggleButton btn = new JToggleButton("Create level");
-        ImageIcon level1Ico = new ImageIcon("src\\SnakeGame\\menuGUI\\levels_ico\\create_level.png");
+        ImageIcon level1Ico = new ImageIcon("src\\SnakeGame\\" +
+                "menuGUI\\levels_ico\\create_level.png");
         btn.setIcon(level1Ico);
         btn.setSize(100, 100);
 

@@ -3,7 +3,7 @@ package SnakeGame.models;
 public class SuperFood extends Food {
     public int probability = 503;
     public boolean isVisible = false;
-    public int time = 0;
+    private int time = 0;
 
     public SuperFood() {
         x = 12;

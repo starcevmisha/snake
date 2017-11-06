@@ -18,31 +18,31 @@ public class InfoLayout extends JPanel {
     }
 
     @Override
-    public void paint(Graphics g) {
-        super.paint(g);
-        g.setColor(Color.GREEN);
+    public void paint(Graphics canvas) {
+        super.paint(canvas);
+        canvas.setColor(Color.GREEN);
 
-        g.setFont(LARGE_FONT);
-        g.drawString(
+        canvas.setFont(LARGE_FONT);
+        canvas.drawString(
                 "The Snake Game",
-                getWidth() / 2 - g.getFontMetrics().stringWidth("The Snake Game") / 2,
+                getWidth() / 2 - canvas.getFontMetrics().stringWidth("The Snake Game") / 2,
                 50);
 
-        g.setFont(MEDIUM_FONT);
-        g.drawString("Statistics:", 30, 90);
-        g.drawString("Controls:", 30, 180);
+        canvas.setFont(MEDIUM_FONT);
+        canvas.drawString("Statistics:", 30, 90);
+        canvas.drawString("Controls:", 30, 180);
 
-        g.setFont(SMALL_FONT);
+        canvas.setFont(SMALL_FONT);
 
-        g.drawString("Total Score: " + game.score, 50, 120);
-        g.drawString("SnakeGame length: " + game.snake.getBody().size(),
+        canvas.drawString("Total Score: " + game.score, 50, 120);
+        canvas.drawString("SnakeGame length: " + game.snake.getBody().size(),
                 50, 150);
 
-        g.drawString("Up: W / Up ", 50, 210);
-        g.drawString("Down: S / Down ", 50, 240);
-        g.drawString("Left: A / Left ", 50, 270);
-        g.drawString("Right: D / Right ", 50, 300);
-        g.drawString("Pause: P", 50, 330);
-        g.drawString("Restart Game: Enter", 50, 360);
+        canvas.drawString("Up: W / Up ", 50, 210);
+        canvas.drawString("Down: S / Down ", 50, 240);
+        canvas.drawString("Left: A / Left ", 50, 270);
+        canvas.drawString("Right: D / Right ", 50, 300);
+        canvas.drawString("Pause: P", 50, 330);
+        canvas.drawString("Restart Game: Enter", 50, 360);
     }
 }

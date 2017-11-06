@@ -27,8 +27,10 @@ public class LevelCreatorWindow extends JFrame {
         addMouseListener(new MouseAdapter() {
             @Override
             public void mousePressed(MouseEvent e) {
-                map[(e.getX() - 8) / Main.CELL_SIZE][(e.getY() - 31) / Main.CELL_SIZE] =
-                        !map[(e.getX() - 8) / Main.CELL_SIZE][(e.getY() - 31) / Main.CELL_SIZE];
+                int xKey = (e.getX() - 8) / Main.CELL_SIZE;
+                int yKey = (e.getY() - 31) / Main.CELL_SIZE;
+                map[xKey][yKey] =
+                        !map[xKey][yKey];
                 mapLayout.repaint();
             }
         });
