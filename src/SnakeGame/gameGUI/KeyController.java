@@ -8,12 +8,12 @@ import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 
 public class KeyController extends KeyAdapter {
-    private JFrame gameWindow;
+    //private JFrame gameWindow;
     private Game game;
 
     KeyController(Game game, JFrame gameWindow) {
         this.game = game;
-        this.gameWindow = gameWindow;
+        //this.gameWindow = gameWindow;
     }
 
     @Override

@@ -16,11 +16,11 @@ class ButtonLayout extends JPanel {
         setBackground(Color.BLACK);
         setLayout(null);
 
-        int startPosX = 90;
+        int startPosY = 90;
 
         JButton startButton = new JButton("Start Game");
         startButton.setPreferredSize(new Dimension(140, 40));
-        startButton.setBounds(30, startPosX, 140, 40);
+        startButton.setBounds(30, startPosY, 140, 40);
         startButton.setBackground(Color.black);
         startButton.setBorder(new LineBorder(Color.green));
         startButton.setFont(MEDIUM_FONT);
@@ -36,7 +36,7 @@ class ButtonLayout extends JPanel {
 
         JButton saveButton = new JButton("Save Level");
         saveButton.setPreferredSize(new Dimension(140, 40));
-        saveButton.setBounds(30, startPosX + 70, 140, 40);
+        saveButton.setBounds(30, startPosY + 70, 140, 40);
         saveButton.setBackground(Color.black);
         saveButton.setBorder(new LineBorder(Color.green));
         saveButton.setFont(MEDIUM_FONT);
@@ -49,12 +49,10 @@ class ButtonLayout extends JPanel {
 
         add(saveButton);
 
-
-
         JButton exitButton = new JButton("Close Game");
         exitButton.setPreferredSize(new Dimension(140, 40));
         exitButton.setBackground(Color.black);
-        exitButton.setBounds(30, startPosX + 140, 140, 40);
+        exitButton.setBounds(30, startPosY + 140, 140, 40);
         exitButton.setBorder(new LineBorder(Color.green));
         exitButton.setFont(MEDIUM_FONT);
         exitButton.setForeground(Color.green);

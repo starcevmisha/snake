@@ -15,7 +15,8 @@ import java.util.List;
 
 
 public class JsonLevels {
-    static File file = new File("src\\SnakeGame\\serial\\levels.json");
+    private static File file = new File("src\\SnakeGame\\" +
+            "serial\\levels.json");
 
     public static void main(String[] args) throws IOException {
         List<Level> levels = extractLevels();
@@ -28,18 +29,18 @@ public class JsonLevels {
         JsonReader reader = null;
         try {
             reader = new JsonReader(new FileReader(file));
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
+        } catch (FileNotFoundException exception) {
+            exception.printStackTrace();
         }
         Gson gson = new Gson();
         Type type = new TypeToken<List<Level>>() {
         }.getType();
-        List<Level> levels = gson.fromJson(reader, type);
 
-        return levels;
+        assert reader != null;
+        return gson.fromJson(reader, type);
     }
 
-    public static void addLevel(String name, String[] map) {
+    private static void addLevel(String name, String[] map) {
         List<Level> levels = extractLevels();
         levels.add(new Level(name, map));
         Gson gson = new Gson();
@@ -48,8 +49,8 @@ public class JsonLevels {
             Files.write(
                     Paths.get("src\\SnakeGame\\serial\\levels.json"),
                     gson.toJson(levels).getBytes());
-        } catch (IOException e) {
-            e.printStackTrace();
+        } catch (IOException exception) {
+            exception.printStackTrace();
         }
     }
 
@@ -72,7 +73,7 @@ public class JsonLevels {
         public String name;
         public String[] map;
 
-        public Level(String name, String[] map) {
+        Level(String name, String[] map) {
             this.name = name;
             this.map = map;
         }

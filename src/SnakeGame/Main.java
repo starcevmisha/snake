@@ -35,7 +35,7 @@ public class Main implements Runnable {
             infoLayout.repaint();
             try {
                 Thread.sleep(Speed);
-            } catch (InterruptedException e) {
+            } catch (InterruptedException exception) {
                 Thread.currentThread().interrupt();
                 return;
             } catch (Exception exception) {
