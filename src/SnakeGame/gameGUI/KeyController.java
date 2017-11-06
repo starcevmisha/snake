@@ -17,8 +17,8 @@ public class KeyController extends KeyAdapter {
     }
 
     @Override
-    public void keyPressed(KeyEvent e) {
-        switch (e.getKeyCode()) {
+    public void keyPressed(KeyEvent event) {
+        switch (event.getKeyCode()) {
             case KeyEvent.VK_W:
             case KeyEvent.VK_UP:
                 if (game.direction != Direction.Down)
