@@ -9,12 +9,12 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class Wall {
-    private static boolean isSet = false;
 
     public static ArrayList<Point> wallList = new ArrayList<>();
 
     public Wall(int levelNum) {
-        if (!isSet) {
+
+        if (levelNum != -1) {
             int t = 1;
             Map<Integer, String[]> wallMapDict = new HashMap<>();
             for (JsonLevels.Level level : JsonLevels.extractLevels()) {
@@ -37,7 +37,6 @@ public class Wall {
             for (int j = 0; j < map[0].length; j++)
                 if (map[j][i])
                     wallList.add(new Point(j, i));
-        isSet = true;
     }
 
     public boolean isIntersectWith(Point p) {

@@ -8,6 +8,7 @@ import javax.swing.border.LineBorder;
 import java.awt.*;
 
 class ButtonLayout extends JPanel {
+    Thread myThread = null;
     ButtonLayout(JFrame parentFrame, Main main) {
         Font MEDIUM_FONT = new Font("Tahoma", Font.BOLD, 16);
         setPreferredSize(new Dimension(200, 800));
@@ -23,8 +24,9 @@ class ButtonLayout extends JPanel {
         startButton.setForeground(Color.green);
         startButton.setOpaque(true);
         startButton.addActionListener(e -> {
-//            parentFrame.setVisible(false);
-            Thread myThread = new Thread(main);
+            if (myThread != null)
+                myThread.interrupt();
+            myThread = new Thread(main);
             myThread.start();
         });
         add(startButton);

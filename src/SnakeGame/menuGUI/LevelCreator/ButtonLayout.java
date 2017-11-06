@@ -1,6 +1,7 @@
 package SnakeGame.menuGUI.LevelCreator;
 
 
+import SnakeGame.Game;
 import SnakeGame.Main;
 import SnakeGame.models.Wall;
 import SnakeGame.serial.JsonLevels;
@@ -27,6 +28,7 @@ class ButtonLayout extends JPanel {
         startButton.setForeground(Color.green);
         startButton.setOpaque(true);
         startButton.addActionListener(e -> {
+            Game.levelNum = -1;
             Wall.setCustomMap(levelCreatorWindow.map);
             Thread myThread = new Thread(main);
             myThread.start();

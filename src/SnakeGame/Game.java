@@ -32,6 +32,10 @@ public class Game {
         Game.isGameOver =
                 snake.isLoop() || wall.isIntersectWith(head);
 
+        Boolean a = snake.isLoop();
+        Boolean b = wall.isIntersectWith(head);
+
+
         Point oldPointFood = new Point((int) food.getX(), (int) food.getY());
         if (food.isEaten(head)) {
             score += food.type;
