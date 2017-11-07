@@ -4,7 +4,7 @@ package SnakeGame.menuGUI.LevelCreator;
 import SnakeGame.Game;
 import SnakeGame.Main;
 import SnakeGame.models.Wall;
-import SnakeGame.serial.JsonLevels;
+import SnakeGame.serial.StockLevels;
 
 import javax.swing.*;
 import javax.swing.border.LineBorder;
@@ -46,7 +46,7 @@ class ButtonLayout extends JPanel {
         saveButton.setOpaque(true);
         saveButton.addActionListener(e -> {
             String levelName = JOptionPane.showInputDialog("Enter Level Name");
-            JsonLevels.addLevel(levelName, levelCreatorWindow.map);
+            StockLevels.addLevel(levelName, levelCreatorWindow.map);
         });
 
         add(saveButton);

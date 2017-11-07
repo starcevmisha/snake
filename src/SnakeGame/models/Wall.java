@@ -1,7 +1,7 @@
 package SnakeGame.models;
 
 
-import SnakeGame.serial.JsonLevels;
+import SnakeGame.serial.StockLevels;
 
 import java.awt.*;
 import java.util.ArrayList;
@@ -17,7 +17,7 @@ public class Wall {
         if (levelNum != -1) {
             int t = 1;
             Map<Integer, String[]> wallMapDict = new HashMap<>();
-            for (JsonLevels.Level level : JsonLevels.extractLevels()) {
+            for (Level level : StockLevels.extractLevels()) {
                 wallMapDict.put(t, level.map);
                 t += 1;
             }

@@ -32,9 +32,5 @@ public class StartMenu extends JFrame {
         getContentPane().add(BorderLayout.CENTER, levelsLayout);
 
         setVisible(true);
-
     }
-
-
-
 }

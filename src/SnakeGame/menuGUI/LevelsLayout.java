@@ -4,7 +4,7 @@ package SnakeGame.menuGUI;
 import SnakeGame.Game;
 import SnakeGame.Main;
 import SnakeGame.menuGUI.LevelCreator.LevelCreatorWindow;
-import SnakeGame.serial.JsonLevels;
+import SnakeGame.models.Level;
 
 import javax.swing.*;
 import javax.swing.border.TitledBorder;
@@ -13,7 +13,7 @@ import java.awt.event.ActionListener;
 import java.util.List;
 import java.util.Objects;
 
-import static SnakeGame.serial.JsonLevels.extractLevels;
+import static SnakeGame.serial.StockLevels.extractLevels;
 
 
 class LevelsLayout extends JPanel {
@@ -38,7 +38,7 @@ class LevelsLayout extends JPanel {
 
         btnPannel.setBackground(Color.BLACK);
 
-        List<JsonLevels.Level> levels = extractLevels();
+        List<Level> levels = extractLevels();
 
         ActionListener listener = e -> {
             if (Objects.equals(e.getActionCommand(), "Create level"))

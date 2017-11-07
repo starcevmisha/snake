@@ -1,4 +1,4 @@
-package SnakeGame.tests;
+package SnakeGame.models.tests;
 
 import SnakeGame.models.Food;
 import org.junit.jupiter.api.Test;
@@ -9,12 +9,12 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class FoodTests {
     @Test
-    void testInit() {
+    void Init() {
         new Food();
     }
 
     @Test
-    void testSet() {
+    void Set() {
         Food food = new Food();
         food.setXY((int) pow(10, 100),
                 -(int) pow(10, 100));
