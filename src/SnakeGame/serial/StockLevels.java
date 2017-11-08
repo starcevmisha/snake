@@ -6,7 +6,6 @@ import SnakeGame.models.Level;
 import java.awt.*;
 import java.io.*;
 import java.util.ArrayList;
-import java.util.Objects;
 
 
 public class StockLevels {
@@ -15,7 +14,7 @@ public class StockLevels {
     private static String filename = "src\\SnakeGame\\serial\\levels.json";
 
     public static void main(String[] args) {
-        deleteLevel("level 1");
+//        deleteLevel(3);
     }
 
     public static ArrayList<Level> extractLevels() {
@@ -41,12 +40,9 @@ public class StockLevels {
         addLevelToFile(name, level);
     }
 
-    public static void deleteLevel(String name) {
+    public static void deleteLevel(int index) {
         ArrayList<Level> levels = Deserialize();
-        for (int i = 0; i < levels.size(); i++) {
-            if (Objects.equals(levels.get(i).name, name))
-                levels.remove(i);
-        }
+        levels.remove(index);
         Serialize(levels);
     }
 

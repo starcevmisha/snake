@@ -18,6 +18,7 @@ import static SnakeGame.serial.StockLevels.extractLevels;
 
 class LevelsLayout extends JPanel {
     //private static final int SIDE = 2;
+    private static int currentLevel = 0;
 
     LevelsLayout(Main main) {
         setPreferredSize(new Dimension(900, 400));
@@ -43,11 +44,18 @@ class LevelsLayout extends JPanel {
         ActionListener listener = e -> {
             if (Objects.equals(e.getActionCommand(), "Create level"))
                 new LevelCreatorWindow(main);
-            else {
+            else if (Objects.equals(e.getActionCommand(), "Delete level")) {
+//                deleteLevel(currentLevel);
+//                currentLevel = 0;
+//                Game.levelNum = 0;
+            } else {
                 for (int i = 0; i < levels.size(); i++) {
                     if (Objects.equals(e.getActionCommand(),
-                            levels.get(i).name))
+                            levels.get(i).name)) {
                         Game.levelNum = i + 1;
+                        currentLevel = i;
+
+                    }
                 }
             }
         };
@@ -79,6 +87,14 @@ class LevelsLayout extends JPanel {
         btn.addActionListener(listener);
         btnGroup.add(btn);
         btnPannel.add(btn);
+
+        JToggleButton deleteBtn = new JToggleButton("Delete level");
+        deleteBtn.setSize(100, 100);
+        deleteBtn.setBackground(Color.black);
+        deleteBtn.setForeground(Color.green);
+        deleteBtn.addActionListener(listener);
+        btnGroup.add(deleteBtn);
+        btnPannel.add(deleteBtn);
 
         add(btnPannel, BorderLayout.CENTER);
     }
