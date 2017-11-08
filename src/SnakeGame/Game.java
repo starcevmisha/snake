@@ -35,10 +35,8 @@ public class Game {
         Game.isGameOver =
                 (snake.isLoop() || wall.isIntersectWith(head)) && !isJump;
 
-        System.out.println(jumpTime);
         if (isJump && jumpTime-- < 0)
             isJump = false;
-
         Point oldPointFood = new Point((int) food.getX(), (int) food.getY());
         if (food.isEaten(head)) {
             score += food.type;

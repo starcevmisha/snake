@@ -7,8 +7,8 @@ import javax.swing.*;
 import javax.swing.border.LineBorder;
 import java.awt.*;
 
-class ButtonLayout extends JPanel {
-    Thread myThread = null;
+public class ButtonLayout extends JPanel {
+    public static Thread myThread = null;
     ButtonLayout(JFrame parentFrame, Main main) {
         Font MEDIUM_FONT = new Font("Tahoma", Font.BOLD, 16);
         setPreferredSize(new Dimension(200, 800));
@@ -24,10 +24,10 @@ class ButtonLayout extends JPanel {
         startButton.setForeground(Color.green);
         startButton.setOpaque(true);
         startButton.addActionListener(e -> {
-            if (myThread != null)
-                myThread.interrupt();
-            myThread = new Thread(main);
-            myThread.start();
+            if (Main.gameThread != null)
+                Main.gameThread.interrupt();
+            Main.gameThread = new Thread(main);
+            Main.gameThread.start();
         });
         add(startButton);
 

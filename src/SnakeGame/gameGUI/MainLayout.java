@@ -2,6 +2,7 @@ package SnakeGame.gameGUI;
 
 import SnakeGame.Game;
 import SnakeGame.Main;
+import SnakeGame.Pair;
 
 import javax.swing.*;
 import java.awt.*;
@@ -29,8 +30,8 @@ public class MainLayout extends JPanel {
         super.paint(canvas);
         drawGrid(canvas);
 
-        for (Point point : game.wall.getWallMap()) {
-            paintPoint(canvas, point, Color.DARK_GRAY);
+        for (Pair<Point, Integer> pair : game.wall.getWallMap()) {
+            paintPoint(canvas, pair.getLeft(), Color.DARK_GRAY);
         }
         if (game.food.type == 1)
             paintPoint(canvas, game.food, Color.magenta);

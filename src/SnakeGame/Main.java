@@ -14,7 +14,7 @@ public class Main implements Runnable {
     public static final int CELL_SIZE = 20;
     static final int snakeLength = 5;
     private static final int Speed = 150;
-
+    public static Thread gameThread = null;
     public static void main(String[] args) {
         new StartMenu(new Main());
     }

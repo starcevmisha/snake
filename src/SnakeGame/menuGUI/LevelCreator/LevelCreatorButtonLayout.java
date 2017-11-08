@@ -10,8 +10,10 @@ import javax.swing.*;
 import javax.swing.border.LineBorder;
 import java.awt.*;
 
-class ButtonLayout extends JPanel {
-    ButtonLayout(LevelCreatorWindow levelCreatorWindow, Main main) {
+class LevelCreatorButtonLayout extends JPanel {
+    Thread myThread = null;
+
+    LevelCreatorButtonLayout(LevelCreatorWindow levelCreatorWindow, Main main) {
         Font MEDIUM_FONT = new Font("Tahoma", Font.BOLD, 16);
         setPreferredSize(new Dimension(200, 800));
         setBackground(Color.BLACK);
@@ -30,8 +32,10 @@ class ButtonLayout extends JPanel {
         startButton.addActionListener(e -> {
             Game.levelNum = -1;
             Wall.setCustomMap(levelCreatorWindow.map);
-            Thread myThread = new Thread(main);
-            myThread.start();
+            if (Main.gameThread != null)
+                Main.gameThread.interrupt();
+            Main.gameThread = new Thread(main);
+            Main.gameThread.start();
             levelCreatorWindow.setVisible(false);
         });
         add(startButton);

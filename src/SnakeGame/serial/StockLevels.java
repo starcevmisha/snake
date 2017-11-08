@@ -1,103 +1,84 @@
 package SnakeGame.serial;
 
+import SnakeGame.Pair;
 import SnakeGame.models.Level;
-import com.google.gson.Gson;
-import com.google.gson.reflect.TypeToken;
-import com.google.gson.stream.JsonReader;
 
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
-import java.io.IOException;
-import java.lang.reflect.Type;
-import java.nio.file.Files;
-import java.nio.file.Paths;
-import java.util.List;
+import java.awt.*;
+import java.io.*;
+import java.util.ArrayList;
+import java.util.Objects;
 
 
 public class StockLevels {
-    private static File file = new File("src\\SnakeGame\\" +
-            "serial\\levels.json");
 
-    @Deprecated
-    public static void main(String[] args) throws IOException {
-        //List<Level> levels = extractLevels();
-        //addLevel("23", new String[]{"12", "345"});
+
+    private static String filename = "src\\SnakeGame\\serial\\levels.json";
+
+    public static void main(String[] args) {
+        deleteLevel("level 1");
     }
 
-    public static List<Level> extractLevels() {
-        JsonReader reader = null;
-        try {
-            reader = new JsonReader(new FileReader(file));
-        } catch (FileNotFoundException exception) {
-            exception.printStackTrace();
-        }
-        assert reader != null;
-        Gson gson = new Gson();
-        Type type = new TypeToken<List<Level>>() {
-        }.getType();
-        return gson.fromJson(reader, type);
+    public static ArrayList<Level> extractLevels() {
+        return Deserialize();
     }
 
-    private static void addLevelToFile(String name, String[] map) {
-        List<Level> levels = extractLevels();
-        if (levels != null)
-            levels.add(new Level(name, map));
-        Gson gson = new Gson();
-        gson.toJson(levels);
-        try {
-            Files.write(
-                    Paths.get("src\\SnakeGame\\serial\\levels.json"),
-                    gson.toJson(levels).getBytes());
-        } catch (IOException exception) {
-            exception.printStackTrace();
-        }
+    private static void addLevelToFile(String name, ArrayList<Pair<Point, Integer>> map) {
+        ArrayList<Level> levels = Deserialize();
+        if (levels == null)
+            levels = new ArrayList<Level>();
+        levels.add(new Level(name, map));
+        Serialize(levels);
     }
 
-    public static void addLevel(String name, boolean[][] map) {
-        String[] res = new String[map.length];
+    public static void addLevel(String name, int[][] map) {
+        ArrayList<Pair<Point, Integer>> level = new ArrayList<>();
         for (int i = 0; i < map.length; i++) {
-            StringBuilder temp = new StringBuilder();
             for (int j = 0; j < map[0].length; j++) {
-                if (map[j][i])
-                    temp.append("1");
-                else
-                    temp.append("0");
+                if (map[j][i] > 0)
+                    level.add(new Pair(new Point(j, i), map[j][i]));
             }
-            res[i] = temp.toString();
         }
-        addLevelToFile(name, res);
+        addLevelToFile(name, level);
     }
 
-    private static int findLevel(String name, List<Level> levels) {
-        int answer = -1;
-        for (int index = 0; index < levels.size(); index++) {
-            Level level = levels.get(index);
-            if (level.name.equals(name))
-                return index;
+    public static void deleteLevel(String name) {
+        ArrayList<Level> levels = Deserialize();
+        for (int i = 0; i < levels.size(); i++) {
+            if (Objects.equals(levels.get(i).name, name))
+                levels.remove(i);
         }
-        return answer;
+        Serialize(levels);
     }
 
-    public static void removeLevel(String name) {
-        List<Level> levels = extractLevels();
-        int index = findLevel(name, levels);
-        if (index >= 0)
-            removeLevel(index);
-    }
+    public static void Serialize(ArrayList<Level> levels) {
 
-    private static void removeLevel(int id) {
-        List<Level> levels = extractLevels();
-        if (id < levels.size())
-            levels.remove(id);
-        Gson gson = new Gson();
-        gson.toJson(levels);
         try {
-            Files.write(
-                    Paths.get("src\\SnakeGame\\serial\\levels.json"),
-                    gson.toJson(levels).getBytes());
-        } catch (IOException exception) {
-            exception.printStackTrace();
+            FileOutputStream fos = new FileOutputStream("src\\SnakeGame\\serial\\levels");
+            ObjectOutputStream oos = new ObjectOutputStream(fos);
+            oos.writeObject(levels);
+            oos.close();
+            fos.close();
+        } catch (IOException ioe) {
+            ioe.printStackTrace();
         }
     }
+
+    public static ArrayList<Level> Deserialize() {
+        try {
+            FileInputStream fis = new FileInputStream("src\\SnakeGame\\serial\\levels");
+            ObjectInputStream ois = new ObjectInputStream(fis);
+            ArrayList<Level> levels = (ArrayList<Level>) ois.readObject();
+            ois.close();
+            fis.close();
+            return levels;
+        } catch (IOException ioe) {
+            ioe.printStackTrace();
+            return null;
+        } catch (ClassNotFoundException c) {
+            System.out.println("Class not found");
+            c.printStackTrace();
+            return null;
+        }
+    }
+
 }

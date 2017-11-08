@@ -4,6 +4,7 @@ import SnakeGame.Game;
 import SnakeGame.Main;
 
 import javax.swing.*;
+import java.awt.event.WindowAdapter;
 
 public class GameWindow extends JFrame {
     public GameWindow(Game game) {
@@ -14,5 +15,12 @@ public class GameWindow extends JFrame {
         setLocation(200, 100);
         setResizable(false);
         addKeyListener(new KeyController(game, this));
+
+        addWindowListener(new WindowAdapter() {
+            public void windowClosing(java.awt.event.WindowEvent e) {
+                Main.gameThread.interrupt();
+            }
+        });
+
     }
 }
