@@ -38,11 +38,16 @@ public class InfoLayout extends JPanel {
         canvas.drawString("SnakeGame length: " + game.snake.getBody().size(),
                 50, 150);
 
-        canvas.drawString("Up: W / Up ", 50, 210);
-        canvas.drawString("Down: S / Down ", 50, 240);
-        canvas.drawString("Left: A / Left ", 50, 270);
-        canvas.drawString("Right: D / Right ", 50, 300);
-        canvas.drawString("Pause: P", 50, 330);
-        canvas.drawString("Restart Game: Enter", 50, 360);
+
+        int deltay = 25;
+        int startY = 210 - deltay;
+        canvas.drawString("Up: W / Up ", 50, startY += deltay);
+        canvas.drawString("Down: S / Down ", 50, startY += deltay);
+        canvas.drawString("Left: A / Left ", 50, startY += deltay);
+        canvas.drawString("Right: D / Right ", 50, startY += deltay);
+        canvas.drawString("Jump: Space", 50, startY += deltay);
+        canvas.drawString("Pause: P", 50, startY += deltay);
+        canvas.drawString("Restart Game: Enter", 50, startY += deltay);
+
     }
 }
