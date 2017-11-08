@@ -47,6 +47,10 @@ public class KeyController extends KeyAdapter {
                 Game.isPaused = !Game.isPaused;
                 break;
 
+            case KeyEvent.VK_SPACE:
+                game.makeJump();
+                break;
+
             case KeyEvent.VK_ENTER:
                 game.reset();
                 break;

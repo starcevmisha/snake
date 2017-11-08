@@ -20,6 +20,9 @@ public class Game {
     public Direction direction = Direction.Right;
     public static int levelNum = 1;
 
+    private static boolean isJump = true;
+    private static int jumpTime = 2;
+
     public Game() {
         snake = new Snake(10, 10, Main.snakeLength);
         food = new Food();
@@ -30,11 +33,11 @@ public class Game {
     void oneStep() {
         Point head = snake.move(direction);
         Game.isGameOver =
-                snake.isLoop() || wall.isIntersectWith(head);
+                (snake.isLoop() || wall.isIntersectWith(head)) && !isJump;
 
-        Boolean a = snake.isLoop();
-        Boolean b = wall.isIntersectWith(head);
-
+        System.out.println(jumpTime);
+        if (isJump && jumpTime-- < 0)
+            isJump = false;
 
         Point oldPointFood = new Point((int) food.getX(), (int) food.getY());
         if (food.isEaten(head)) {
@@ -58,6 +61,11 @@ public class Game {
         if (superFood.isVisible)
             superFood.check();
 
+    }
+
+    public void makeJump() {
+        isJump = true;
+        jumpTime = 2;
     }
 
     public void reset() {
