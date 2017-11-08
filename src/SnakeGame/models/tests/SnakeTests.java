@@ -1,4 +1,4 @@
-package SnakeGame.tests;
+package SnakeGame.models.tests;
 
 import SnakeGame.Direction;
 import SnakeGame.models.Food;
@@ -14,20 +14,20 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 class SnakeTests {
     @Test
-    void testInit() {
+    void Init() {
         new Snake(1, 1, 100);
         new Snake(-2, (int) pow(10, 100), 1);
     }
 
     @Test
-    void testMove() {
+    void Move() {
         Snake snake = new Snake(10, 10, 10);
         snake.move(Direction.Right);
         assertTrue(snake.isIntersectWith(new Point(11, 10)));
     }
 
     @Test
-    void testLoop() {
+    void Loop() {
         Snake snake = new Snake(10, 10, 10);
         snake.move(Direction.Down);
         snake.move(Direction.Left);
@@ -36,7 +36,7 @@ class SnakeTests {
     }
 
     @Test
-    void testFoodEaten() {
+    void FoodEaten() {
         Snake snake = new Snake(10, 10, 10);
         Food food = new Food();
         food.setXY(11, 10);
@@ -45,7 +45,7 @@ class SnakeTests {
     }
 
     @Test
-    void testExtend() {
+    void Extend() {
         Snake snake = new Snake(0, 0, 15);
         for (int i = 0; i < 20; i++) {
             snake.extend(new Point(i, -i));

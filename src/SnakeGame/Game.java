@@ -18,19 +18,26 @@ public class Game {
     private Random random = new Random();
     public Wall wall;
     public Direction direction = Direction.Right;
-    public static int Level = 1;
+    public static int levelNum = 1;
+
+    private static boolean isJump = true;
+    private static int jumpTime = 2;
 
     public Game() {
         snake = new Snake(10, 10, Main.snakeLength);
         food = new Food();
         superFood = new SuperFood();
-        wall = new Wall(Level);
+        wall = new Wall(levelNum);
     }
 
     void oneStep() {
         Point head = snake.move(direction);
         Game.isGameOver =
-                snake.isLoop() || wall.isIntersectWith(head);
+                (snake.isLoop() || wall.isIntersectWith(head)) && !isJump;
+
+        System.out.println(jumpTime);
+        if (isJump && jumpTime-- < 0)
+            isJump = false;
 
         Point oldPointFood = new Point((int) food.getX(), (int) food.getY());
         if (food.isEaten(head)) {
@@ -40,18 +47,25 @@ public class Game {
             snake.extend(oldPointFood);
             newFood();
         }
-        if (superFood.isEaten(head)) {
+        if (superFood.isEaten(head) && superFood.isVisible) {
             snake.cut();
             score -= 20;
             newSuperFood();
             superFood.isVisible = false;
         }
         if (!superFood.isVisible)
-            if (random.nextInt() % superFood.probability == 0)
+            if (random.nextInt() % superFood.probability == 0) {
                 superFood.setVisible();
+                newSuperFood();
+            }
         if (superFood.isVisible)
             superFood.check();
 
+    }
+
+    public void makeJump() {
+        isJump = true;
+        jumpTime = 2;
     }
 
     public void reset() {
