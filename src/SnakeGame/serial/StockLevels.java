@@ -14,7 +14,8 @@ public class StockLevels {
     private static String filename = "src\\SnakeGame\\serial\\levels.json";
 
     public static void main(String[] args) {
-//        deleteLevel(3);
+        System.out.println(extractLevels().size());
+//        removeLevel(extractLevels().size()-1);
     }
 
     public static ArrayList<Level> extractLevels() {
@@ -40,7 +41,7 @@ public class StockLevels {
         addLevelToFile(name, level);
     }
 
-    public static void deleteLevel(int index) {
+    public static void removeLevel(int index) {
         ArrayList<Level> levels = Deserialize();
         levels.remove(index);
         Serialize(levels);
