@@ -16,7 +16,7 @@ public class Game {
     public Snake snake;
     public Food food;
     private Random random = new Random();
-    public Wall wall;
+    public static Wall wall;
     public Direction direction = Direction.Right;
     public static int levelNum = 1;
 
@@ -32,12 +32,10 @@ public class Game {
 
     void oneStep() {
         Point head = snake.move(direction);
-        Game.isGameOver =
+        isGameOver =
                 (snake.isLoop() || wall.isIntersectWith(head)) && !isJump;
 
-        System.out.println(jumpTime);
-        if (isJump && jumpTime-- < 0)
-            isJump = false;
+        isJump &= jumpTime-- < 0;
 
         Point oldPointFood = new Point((int) food.getX(), (int) food.getY());
         if (food.isEaten(head)) {
@@ -47,20 +45,22 @@ public class Game {
             snake.extend(oldPointFood);
             newFood();
         }
+
         if (superFood.isEaten(head) && superFood.isVisible) {
             snake.cut();
             score -= 20;
             newSuperFood();
             superFood.isVisible = false;
         }
-        if (!superFood.isVisible)
-            if (random.nextInt() % superFood.probability == 0) {
+
+        if (!superFood.isVisible &&
+                random.nextInt() % superFood.probability == 0) {
                 superFood.setVisible();
                 newSuperFood();
             }
+
         if (superFood.isVisible)
             superFood.check();
-
     }
 
     public void makeJump() {

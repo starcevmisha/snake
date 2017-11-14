@@ -29,7 +29,7 @@ public class MainLayout extends JPanel {
         super.paint(canvas);
         drawGrid(canvas);
 
-        for (Point point : game.wall.getWallMap()) {
+        for (Point point : Game.wall.getBody()) {
             paintPoint(canvas, point, Color.DARK_GRAY);
         }
         if (game.food.type == 1)
