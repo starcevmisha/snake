@@ -9,8 +9,6 @@ import java.util.ArrayList;
 
 
 public class StockLevels {
-
-
     private static String filename = "src\\SnakeGame\\serial\\levels.json";
 
     public static void main(String[] args) {
@@ -19,15 +17,15 @@ public class StockLevels {
     }
 
     public static ArrayList<Level> extractLevels() {
-        return Deserialize();
+        return deserialize();
     }
 
     private static void addLevelToFile(String name, ArrayList<Pair<Point, Integer>> map) {
-        ArrayList<Level> levels = Deserialize();
+        ArrayList<Level> levels = deserialize();
         if (levels == null)
-            levels = new ArrayList<Level>();
+            levels = new ArrayList<>();
         levels.add(new Level(name, map));
-        Serialize(levels);
+        serialize(levels);
     }
 
     public static void addLevel(String name, int[][] map) {
@@ -35,22 +33,23 @@ public class StockLevels {
         for (int i = 0; i < map.length; i++) {
             for (int j = 0; j < map[0].length; j++) {
                 if (map[j][i] > 0)
-                    level.add(new Pair(new Point(j, i), map[j][i]));
+                    level.add(new Pair<>(new Point(j, i), map[j][i]));
             }
         }
         addLevelToFile(name, level);
     }
 
     public static void removeLevel(int index) {
-        ArrayList<Level> levels = Deserialize();
-        levels.remove(index);
-        Serialize(levels);
+        ArrayList<Level> levels = deserialize();
+        if (levels != null)
+            levels.remove(index);
+        serialize(levels);
     }
 
-    public static void Serialize(ArrayList<Level> levels) {
-
+    private static void serialize(ArrayList<Level> levels) {
         try {
-            FileOutputStream fos = new FileOutputStream("src\\SnakeGame\\serial\\levels");
+            FileOutputStream fos = new FileOutputStream(
+                    "src\\SnakeGame\\serial\\levels");
             ObjectOutputStream oos = new ObjectOutputStream(fos);
             oos.writeObject(levels);
             oos.close();
@@ -60,9 +59,10 @@ public class StockLevels {
         }
     }
 
-    public static ArrayList<Level> Deserialize() {
+    private static ArrayList<Level> deserialize() {
         try {
-            FileInputStream fis = new FileInputStream("src\\SnakeGame\\serial\\levels");
+            FileInputStream fis = new FileInputStream(
+                    "src\\SnakeGame\\serial\\levels");
             ObjectInputStream ois = new ObjectInputStream(fis);
             ArrayList<Level> levels = (ArrayList<Level>) ois.readObject();
             ois.close();
@@ -70,12 +70,10 @@ public class StockLevels {
             return levels;
         } catch (IOException ioe) {
             ioe.printStackTrace();
-            return null;
         } catch (ClassNotFoundException c) {
             System.out.println("Class not found");
             c.printStackTrace();
-            return null;
         }
+        return null;
     }
-
 }

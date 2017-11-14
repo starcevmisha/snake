@@ -11,7 +11,7 @@ import java.util.Map;
 
 public class Wall {
 
-    public static ArrayList<Pair<Point, Integer>> wallList = new ArrayList<>();
+    private static ArrayList<Pair<Point, Integer>> wallList = new ArrayList<>();
 
     public Wall(int levelNum) {
 
