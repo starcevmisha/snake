@@ -23,7 +23,7 @@ class SnakeTests {
     void Move() {
         Snake snake = new Snake(10, 10, 10);
         snake.move(Direction.Right);
-        assertTrue(snake.isIntersectWith(new Point(11, 10)));
+        assertTrue(snake.intersectedBy(new Point(11, 10)));
     }
 
     @Test

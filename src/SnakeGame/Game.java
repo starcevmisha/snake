@@ -33,7 +33,7 @@ public class Game {
     void oneStep() {
         Point head = snake.move(direction);
         isGameOver =
-                (snake.isLoop() || wall.isIntersectWith(head)) && !isJump;
+                (snake.isLoop() || wall.intersectedBy(head)) && !isJump;
 
         isJump &= jumpTime-- < 0;
 
@@ -78,14 +78,14 @@ public class Game {
     }
 
     private void newFood() {
-        while (snake.isIntersectWith(food)
-                || wall.isIntersectWith(food))
+        while (snake.intersectedBy(food)
+                || !wall.canPlaceFood(food))
             food.nextFood();
     }
 
     private void newSuperFood() {
-        while (snake.isIntersectWith(superFood)
-                || wall.isIntersectWith(superFood))
+        while (snake.intersectedBy(superFood)
+                || !wall.canPlaceFood(superFood))
             superFood.nextFood();
     }
 }

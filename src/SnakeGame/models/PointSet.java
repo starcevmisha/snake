@@ -10,7 +10,7 @@ public abstract class PointSet {
         return body;
     }
 
-    public boolean isIntersectWith(Point other) {
+    public boolean intersectedBy(Point other) {
         for (Point point : body) {
             if ((int) point.getX() == (int) other.getX()
                     && (int) point.getY() == (int) other.getY())

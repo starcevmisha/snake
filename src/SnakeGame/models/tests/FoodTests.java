@@ -20,6 +20,5 @@ class FoodTests {
                 -(int) pow(10, 100));
         assertEquals((int) pow(10, 100), food.x);
         assertEquals((int) pow(10, 100) * -1, food.y);
-
     }
 }
