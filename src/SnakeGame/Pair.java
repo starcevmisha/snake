@@ -26,11 +26,11 @@ public class Pair<L, R> implements Serializable {
     }
 
     @Override
-    public boolean equals(Object o) {
-        if (!(o instanceof Pair)) return false;
-        Pair pairo = (Pair) o;
-        return this.left.equals(pairo.getLeft()) &&
-                this.right.equals(pairo.getRight());
+    public boolean equals(Object other) {
+        if (!(other instanceof Pair)) return false;
+        Pair otherAsPair = (Pair) other;
+        return this.left.equals(otherAsPair.getLeft()) &&
+                this.right.equals(otherAsPair.getRight());
     }
 
 }

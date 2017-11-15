@@ -39,11 +39,9 @@ public class Snake {
     }
 
     public boolean isIntersectWith(Point other) {
-        for (Point point : body) {
-            if ((int) point.getX() == (int) other.getX()
-                    && (int) point.getY() == (int) other.getY())
+        for (Point point : body)
+            if (point.equals(other))
                 return true;
-        }
         return false;
     }
 

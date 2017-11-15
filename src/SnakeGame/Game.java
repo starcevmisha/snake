@@ -16,7 +16,7 @@ public class Game {
     public Snake snake;
     public Food food;
     private Random random = new Random();
-    public Wall wall;
+    public static Wall wall;
     public Direction direction = Direction.Right;
     public static int levelNum = 1;
 

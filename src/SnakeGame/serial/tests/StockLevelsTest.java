@@ -39,8 +39,10 @@ class StockLevelsTest {
 
         try {
             assertEquals("TestLevel", levels.get(levels.size() - 1).name);
-            assertTrue(expectedArray.containsAll(levels.get(levels.size() - 1).map)
-                    && levels.get(levels.size() - 1).map.containsAll(expectedArray));
+            assertTrue(expectedArray.containsAll
+                    (levels.get(levels.size() - 1).map)
+                    && levels.get(levels.size() - 1).map.containsAll(
+                    expectedArray));
         } finally {
             StockLevels.removeLevel(levels.size() - 1);
         }
