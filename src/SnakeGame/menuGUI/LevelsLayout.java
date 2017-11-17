@@ -13,7 +13,6 @@ import java.awt.event.ActionListener;
 import java.util.List;
 import java.util.Objects;
 
-import static SnakeGame.serial.StockLevels.extractLevels;
 
 
 class LevelsLayout extends JPanel {
@@ -39,7 +38,7 @@ class LevelsLayout extends JPanel {
 
         btnPannel.setBackground(Color.BLACK);
 
-        List<Level> levels = extractLevels();
+        List<Level> levels = main.seriailizer.extractLevels();
 
         ActionListener listener = e -> {
             if (Objects.equals(e.getActionCommand(), "Create level"))

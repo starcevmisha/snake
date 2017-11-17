@@ -2,7 +2,7 @@ package SnakeGame.models;
 
 
 import SnakeGame.Pair;
-import SnakeGame.serial.StockLevels;
+import SnakeGame.serial.Serializer;
 
 import java.awt.*;
 import java.util.ArrayList;
@@ -11,28 +11,21 @@ import java.util.Map;
 
 public class Wall {
 
-    private ArrayList<Pair<Point, Integer>> wallList = new ArrayList<>();
+    private static ArrayList<Pair<Point, Integer>> wallList = new ArrayList<>();
 
-    public Wall(int levelNum) {
+    public Wall(int levelNum, Serializer serializer) {
         if (levelNum != -1) {
             int t = 1;
             Map<Integer, ArrayList<Pair<Point, Integer>>>
                     wallMapDict = new HashMap<>();
-            for (Level level : StockLevels.extractLevels()) {
+            for (Level level : serializer.extractLevels()) {
                 wallMapDict.put(t, level.map);
                 t += 1;
             }
-
-            wallList = wallMapDict.get(levelNum);
-//            wallList = new ArrayList<>();
-//            for (int i = 0; i < wallMap.length; i++)
-//                for (int j = 0; j < wallMap[0].length(); j++)
-//                    if (wallMap[i].charAt(j) == '1')
-//                        wallList.add(new Pair<>(new Point(j, i), 1));
         }
     }
 
-    public void setCustomMap(int[][] map) {
+    public static void setCustomMap(int[][] map) {
         wallList = new ArrayList<>();
         for (int i = 0; i < map.length; i++)
             for (int j = 0; j < map[0].length; j++)

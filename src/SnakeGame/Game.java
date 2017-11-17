@@ -16,18 +16,18 @@ public class Game {
     public Snake snake;
     public Food food;
     private Random random = new Random();
-    public static Wall wall;
+    public Wall wall;
     public Direction direction = Direction.Right;
     public static int levelNum = 1;
 
     private static boolean isJump = true;
     private static int jumpTime = 2;
 
-    public Game() {
+    public Game(Main main) {
         snake = new Snake(10, 10, Main.snakeLength);
         food = new Food();
         superFood = new SuperFood();
-        wall = new Wall(levelNum);
+        wall = new Wall(levelNum, main.seriailizer);
     }
 
     void oneStep() {

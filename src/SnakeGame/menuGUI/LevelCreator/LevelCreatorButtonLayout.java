@@ -3,7 +3,7 @@ package SnakeGame.menuGUI.LevelCreator;
 
 import SnakeGame.Game;
 import SnakeGame.Main;
-import SnakeGame.serial.StockLevels;
+import SnakeGame.models.Wall;
 
 import javax.swing.*;
 import javax.swing.border.LineBorder;
@@ -30,7 +30,7 @@ class LevelCreatorButtonLayout extends JPanel {
         startButton.setOpaque(true);
         startButton.addActionListener(e -> {
             Game.levelNum = -1;
-            Game.wall.setCustomMap(levelCreatorWindow.map);
+            Wall.setCustomMap(levelCreatorWindow.map);
             if (Main.gameThread != null)
                 Main.gameThread.interrupt();
             Main.gameThread = new Thread(main);
@@ -49,7 +49,7 @@ class LevelCreatorButtonLayout extends JPanel {
         saveButton.setOpaque(true);
         saveButton.addActionListener(e -> {
             String levelName = JOptionPane.showInputDialog("Enter Level Name");
-            StockLevels.addLevel(levelName, levelCreatorWindow.map);
+            main.seriailizer.addLevel(levelName, levelCreatorWindow.map);
         });
 
         add(saveButton);
