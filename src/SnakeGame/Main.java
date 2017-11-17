@@ -5,6 +5,7 @@ import SnakeGame.gameGUI.GameWindow;
 import SnakeGame.gameGUI.InfoLayout;
 import SnakeGame.gameGUI.MainLayout;
 import SnakeGame.menuGUI.StartMenu;
+import SnakeGame.serial.Serializer;
 
 import java.awt.*;
 
@@ -15,12 +16,14 @@ public class Main implements Runnable {
     static final int snakeLength = 5;
     private static final int Speed = 150;
     public static Thread gameThread = null;
+    public Serializer seriailizer = new Serializer();
     public static void main(String[] args) {
+
         new StartMenu(new Main());
     }
 
     public void run() {
-        Game game = new Game();
+        Game game = new Game(this);
         GameWindow gameWindow = new GameWindow(game);
         MainLayout mainLayout = new MainLayout(game);
         InfoLayout infoLayout = new InfoLayout(game);
