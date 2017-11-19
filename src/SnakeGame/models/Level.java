@@ -14,4 +14,12 @@ public class Level implements Serializable {
         this.name = name;
         this.map = map;
     }
+
+    @Override
+    public boolean equals(Object other) {
+        return other instanceof Level &&
+                ((Level) other).name.equals(name) &&
+                ((Level) other).map.containsAll(map) &&
+                map.containsAll(((Level) other).map);
+    }
 }

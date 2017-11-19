@@ -12,7 +12,9 @@ import java.util.Base64;
 public class Serializer {
     private static String filename = "src\\SnakeGame\\serial\\levels.base64";
 
-    public static void main(String[] args) throws IOException, ClassNotFoundException {
+    @Deprecated
+    public static void main(String[] args) throws IOException,
+            ClassNotFoundException {
         ArrayList<Level> levels = new ArrayList<>();
 
         ArrayList<Pair<Point, Integer>> expectedArray = new ArrayList<>();
@@ -30,7 +32,8 @@ public class Serializer {
         return Deserialize();
     }
 
-    private void addLevelToFile(String name, ArrayList<Pair<Point, Integer>> map) {
+    private void addLevelToFile
+            (String name, ArrayList<Pair<Point, Integer>> map) {
         ArrayList<Level> levels = Deserialize();
         if (levels == null)
             levels = new ArrayList<>();
@@ -49,6 +52,7 @@ public class Serializer {
         addLevelToFile(name, level);
     }
 
+    @Deprecated
     public void removeLevel(int index) {
         ArrayList<Level> levels = Deserialize();
         if (levels != null)
@@ -59,16 +63,28 @@ public class Serializer {
     public String SerializeToString(ArrayList<Level> levels) {
         String result = "";
         try {
-            ByteArrayOutputStream baos = new ByteArrayOutputStream();
-            ObjectOutputStream oos = new ObjectOutputStream(baos);
+            ByteArrayOutputStream stream = new ByteArrayOutputStream();
+            ObjectOutputStream oos = new ObjectOutputStream(stream);
             oos.writeObject(levels);
             oos.close();
-            result = Base64.getEncoder().encodeToString(baos.toByteArray());
+            result = Base64.getEncoder().encodeToString(stream.toByteArray());
 
         } catch (IOException ioe) {
             ioe.printStackTrace();
         }
         return result;
+    }
+
+    @SuppressWarnings(value = "unchecked")
+    public ArrayList<Level> DeserializeFromString(String s) throws
+            IOException,
+            ClassNotFoundException {
+        byte[] data = Base64.getDecoder().decode(s);
+        ObjectInputStream stream = new ObjectInputStream(
+                new ByteArrayInputStream(data));
+        Object object = stream.readObject();
+        stream.close();
+        return (ArrayList<Level>) object;
     }
 
     private void Serialize(ArrayList<Level> levels) {
@@ -82,19 +98,11 @@ public class Serializer {
         }
     }
 
-    public ArrayList<Level> DeserializeFromString(String s) throws IOException, ClassNotFoundException {
-        byte[] data = Base64.getDecoder().decode(s);
-        ObjectInputStream ois = new ObjectInputStream(
-                new ByteArrayInputStream(data));
-        Object o = ois.readObject();
-        ois.close();
-        return (ArrayList<Level>) o;
-    }
-
     private ArrayList<Level> Deserialize() {
         try {
-            BufferedReader reader = new BufferedReader(new FileReader(filename));
-            String line = null;
+            BufferedReader reader = new BufferedReader(
+                    new FileReader(filename));
+            String line;
             if ((line = reader.readLine()) != null) {
                 return DeserializeFromString(line);
             }
@@ -104,21 +112,5 @@ public class Serializer {
             e.printStackTrace();
         }
         return null;
-//        try {
-//            FileInputStream fis = new FileInputStream(filename);
-//            ObjectInputStream ois = new ObjectInputStream(fis);
-//            ArrayList<Level> levels = (ArrayList<Level>) ois.readObject();
-//            ois.close();
-//            fis.close();
-//            return levels;
-//        } catch (IOException ioe) {
-//            ioe.printStackTrace();
-//        } catch (ClassNotFoundException c) {
-//            System.out.println("Class not found");
-//            c.printStackTrace();
-//        }
-//        return null;
     }
-
-
 }
