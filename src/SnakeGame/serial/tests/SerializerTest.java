@@ -13,19 +13,69 @@ import java.util.List;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-class SerializerTest {
-    @Test
-    void ExtractLevels_ContainsDefaultMaps_Test() {
-        ArrayList<Level> levels = new Serializer().extractLevels();
-        String[] names = new String[]{
-                "Level1", "Level2", "Level3"};
-        for (int number = 0; number < names.length; number++) {
-            assertEquals(names[number], levels.get(number).name);
+class SerializerTests {
+    private ArrayList<Pair<Point, Integer>> getMap() {
+        ArrayList<Pair<Point, Integer>> map = new ArrayList<>();
+        map.add(new Pair<>(new Point(1, 2), 0));
+        map.add(new Pair<>(new Point(3, 4), 1));
+        return map;
+    }
+
+    private ArrayList<Level> getLevels() {
+        ArrayList<Level> levels = new ArrayList<>();
+        ArrayList<Pair<Point, Integer>> map = getMap();
+        levels.add(new Level("Test", map));
+        return levels;
+    }
+
+    private boolean compareArrayLists(ArrayList<Level> first,
+                                      ArrayList<Level> second) {
+        if (first.size() != second.size())
+            return false;
+        for (int i = 0; i < first.size(); i++) {
+            if (!(first.get(i).map.containsAll(second.get(i).map)
+                    && second.get(i).map.containsAll(first.get(i).map))
+                    && first.get(i).name == second.get(i).name)
+                return false;
         }
+        return true;
     }
 
     @Test
-    void SerializeToString_And_DeserializeFromString_Test() throws IOException, ClassNotFoundException {
+    void SerializeEquality() {
+        Serializer serializer = new Serializer();
+        ArrayList<Level> levels = getLevels();
+        ArrayList<Level> copy = getLevels();
+        assertEquals(serializer.SerializeToString(levels),
+                serializer.SerializeToString(levels));
+        assertEquals(serializer.SerializeToString(levels),
+                serializer.SerializeToString(copy));
+
+    }
+
+    @Test
+    void DeserializeEquality() throws IOException, ClassNotFoundException {
+        Serializer serializer = new Serializer();
+        ArrayList<Level> levels = getLevels();
+        ArrayList<Level> copy = getLevels();
+        String serializedLevels = serializer.SerializeToString(levels);
+        String serializedCopy = serializer.SerializeToString(copy);
+        assertTrue(
+                compareArrayLists(serializer.DeserializeFromString(
+                        serializedLevels),
+                        serializer.DeserializeFromString(
+                                serializedLevels)));
+        assertTrue(
+                compareArrayLists(serializer.DeserializeFromString(
+                        serializedLevels),
+                        serializer.DeserializeFromString(
+                                serializedCopy)));
+
+    }
+
+    @Test
+    void AddAndRemoveLevels() throws IOException,
+            ClassNotFoundException {
         Serializer serializer = new Serializer();
 
         ArrayList<Level> levels = new ArrayList<>();
@@ -37,12 +87,14 @@ class SerializerTest {
 
         String serializeResult = serializer.SerializeToString(levels);
 
-        List<Level> deserializedLevels = serializer.DeserializeFromString(serializeResult);
+        List<Level> deserializedLevels = serializer.DeserializeFromString(
+                serializeResult);
 
         assertEquals(levels.get(0).name, deserializedLevels.get(0).name);
         assertTrue(
-                levels.get(0).map.containsAll(deserializedLevels.get(0).map)
-                        && deserializedLevels.get(0).map.containsAll(levels.get(0).map));
-
+                levels.get(0).map.containsAll(
+                        deserializedLevels.get(0).map)
+                        && deserializedLevels.get(0).map.containsAll(
+                        levels.get(0).map));
     }
 }

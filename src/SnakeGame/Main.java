@@ -20,7 +20,7 @@ public class Main implements Runnable {
     public Serializer seriailizer = new Serializer();
     public static void main(String[] args) {
 
-        Object[] options = {"Swing", "SWT"};
+        Object[] options = {"Swing", "javafx"};
         int n = JOptionPane.showOptionDialog(null,
                 "Что хотите?",
                 "GUI",
