@@ -1,4 +1,4 @@
-package SnakeGame.gameGUI;
+package SnakeGame.SwingGUI.gameGUI;
 
 import SnakeGame.Game;
 

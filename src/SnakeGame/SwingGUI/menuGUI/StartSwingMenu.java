@@ -1,4 +1,4 @@
-package SnakeGame.menuGUI;
+package SnakeGame.SwingGUI.menuGUI;
 
 
 import SnakeGame.Main;
@@ -6,8 +6,8 @@ import SnakeGame.Main;
 import javax.swing.*;
 import java.awt.*;
 
-public class StartMenu extends JFrame {
-    public StartMenu(Main main) {
+public class StartSwingMenu extends JFrame {
+    public StartSwingMenu(Main main) {
         super("MENU");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setSize(900, 400);

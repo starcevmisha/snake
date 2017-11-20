@@ -1,4 +1,4 @@
-package SnakeGame.menuGUI.LevelCreator;
+package SnakeGame.SwingGUI.menuGUI.LevelCreator;
 
 import SnakeGame.Main;
 

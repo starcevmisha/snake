@@ -1,9 +1,9 @@
-package SnakeGame.menuGUI;
+package SnakeGame.SwingGUI.menuGUI;
 
 
 import SnakeGame.Game;
 import SnakeGame.Main;
-import SnakeGame.menuGUI.LevelCreator.LevelCreatorWindow;
+import SnakeGame.SwingGUI.menuGUI.LevelCreator.LevelCreatorWindow;
 import SnakeGame.models.Level;
 
 import javax.swing.*;
@@ -63,7 +63,7 @@ class LevelsLayout extends JPanel {
         for (int i = 0; i < levels.size(); i++) {
             JToggleButton btn = new JToggleButton(levels.get(i).name);
             ImageIcon level1Ico = new ImageIcon(String.format(
-                    "src\\SnakeGame\\menuGUI\\levels_ico\\level_%s.png",
+                    "src\\SnakeGame\\SwingGUI\\menuGUI\\levels_ico\\level_%s.png",
                     i + 1));
             btn.setIcon(level1Ico);
             btn.setSize(100, 100);

@@ -1,12 +1,13 @@
 package SnakeGame;
 
 
-import SnakeGame.gameGUI.GameWindow;
-import SnakeGame.gameGUI.InfoLayout;
-import SnakeGame.gameGUI.MainLayout;
-import SnakeGame.menuGUI.StartMenu;
+import SnakeGame.SwingGUI.gameGUI.GameWindow;
+import SnakeGame.SwingGUI.gameGUI.InfoLayout;
+import SnakeGame.SwingGUI.gameGUI.MainLayout;
+import SnakeGame.SwingGUI.menuGUI.StartSwingMenu;
 import SnakeGame.serial.Serializer;
 
+import javax.swing.*;
 import java.awt.*;
 
 public class Main implements Runnable {
@@ -19,7 +20,19 @@ public class Main implements Runnable {
     public Serializer seriailizer = new Serializer();
     public static void main(String[] args) {
 
-        new StartMenu(new Main());
+        Object[] options = {"Swing", "SWT"};
+        int n = JOptionPane.showOptionDialog(null,
+                "Что хотите?",
+                "GUI",
+                JOptionPane.YES_NO_OPTION,
+                JOptionPane.QUESTION_MESSAGE,
+                null,     //do not use a custom Icon
+                options,  //the titles of buttons
+                options[0]);
+        if (n == 0)
+            new StartSwingMenu(new Main());
+        else
+            System.out.println("Not Implemented");
     }
 
     public void run() {
