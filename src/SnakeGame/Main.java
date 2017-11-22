@@ -1,14 +1,11 @@
 package SnakeGame;
 
 
-import SnakeGame.SwingGUI.gameGUI.GameWindow;
-import SnakeGame.SwingGUI.gameGUI.InfoLayout;
-import SnakeGame.SwingGUI.gameGUI.MainLayout;
+import SnakeGame.SwingGUI.gameGUI.GameWindowSwing;
 import SnakeGame.SwingGUI.menuGUI.StartSwingMenu;
 import SnakeGame.serial.Serializer;
 
 import javax.swing.*;
-import java.awt.*;
 
 public class Main implements Runnable {
     public static final int WIDTH = 20;
@@ -37,18 +34,13 @@ public class Main implements Runnable {
 
     public void run() {
         Game game = new Game(this);
-        GameWindow gameWindow = new GameWindow(game);
-        MainLayout mainLayout = new MainLayout(game);
-        InfoLayout infoLayout = new InfoLayout(game);
-        gameWindow.getContentPane().add(BorderLayout.CENTER, mainLayout);
-        gameWindow.getContentPane().add(BorderLayout.EAST, infoLayout);
-        gameWindow.setVisible(true);
+        GameWindowSwing gameWindow = new GameWindowSwing(game);
+
 
         while (true) {
             if (!Game.isPaused && !Game.isGameOver)
                 game.oneStep();
-            mainLayout.repaint();
-            infoLayout.repaint();
+            gameWindow.Repaint();
             try {
                 Thread.sleep(Speed);
             } catch (InterruptedException exception) {

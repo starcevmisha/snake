@@ -4,10 +4,14 @@ import SnakeGame.Game;
 import SnakeGame.Main;
 
 import javax.swing.*;
+import java.awt.*;
 import java.awt.event.WindowAdapter;
 
-public class GameWindow extends JFrame {
-    public GameWindow(Game game) {
+public class GameWindowSwing extends JFrame {
+    private MainLayout mainLayout;
+    private InfoLayout infoLayout;
+
+    public GameWindowSwing(Game game) {
         super("SnakeGame");
 //      setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setSize(Main.WIDTH * Main.CELL_SIZE + 218,
@@ -22,5 +26,16 @@ public class GameWindow extends JFrame {
             }
         });
 
+        mainLayout = new MainLayout(game);
+        infoLayout = new InfoLayout(game);
+        getContentPane().add(BorderLayout.CENTER, mainLayout);
+        getContentPane().add(BorderLayout.EAST, infoLayout);
+        setVisible(true);
+
+    }
+
+    public void Repaint() {
+        mainLayout.repaint();
+        infoLayout.repaint();
     }
 }
