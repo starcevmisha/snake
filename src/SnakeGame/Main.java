@@ -3,7 +3,9 @@ package SnakeGame;
 
 import SnakeGame.SwingGUI.gameGUI.GameWindowSwing;
 import SnakeGame.SwingGUI.menuGUI.StartSwingMenu;
+import SnakeGame.javafxGUI.GameWindowFx;
 import SnakeGame.serial.Serializer;
+import javafx.application.Application;
 
 import javax.swing.*;
 
@@ -15,6 +17,7 @@ public class Main implements Runnable {
     private static final int Speed = 150;
     public static Thread gameThread = null;
     public Serializer seriailizer = new Serializer();
+    public static GUI CurrentGui;
     public static void main(String[] args) {
 
         Object[] options = {"Swing", "javafx"};
@@ -26,21 +29,33 @@ public class Main implements Runnable {
                 null,     //do not use a custom Icon
                 options,  //the titles of buttons
                 options[0]);
-        if (n == 0)
+        if (n == 0) {
+            CurrentGui = GUI.swing;
             new StartSwingMenu(new Main());
-        else
-            System.out.println("Not Implemented");
+        } else {
+            CurrentGui = GUI.javafx;
+            Main.gameThread = new Thread(new Main());
+            Main.gameThread.start();
+
+        }
     }
 
     public void run() {
+        IGameGui gameWindow;
         Game game = new Game(this);
-        GameWindowSwing gameWindow = new GameWindowSwing(game);
+        if (CurrentGui == GUI.swing) {
+            gameWindow = new GameWindowSwing(game);
+        } else {
+            gameWindow = new GameWindowFx();
+            ((GameWindowFx) gameWindow).Settings(game);
+            Application.launch(((GameWindowFx) gameWindow).getClass());
+        }
 
 
         while (true) {
             if (!Game.isPaused && !Game.isGameOver)
                 game.oneStep();
-            gameWindow.Repaint();
+            gameWindow.repaint();
             try {
                 Thread.sleep(Speed);
             } catch (InterruptedException exception) {
@@ -51,5 +66,8 @@ public class Main implements Runnable {
             }
         }
     }
+
 }
+
+
 

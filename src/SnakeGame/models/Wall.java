@@ -6,8 +6,6 @@ import SnakeGame.serial.Serializer;
 
 import java.awt.*;
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Map;
 
 public class Wall {
 
@@ -16,10 +14,9 @@ public class Wall {
     public Wall(int levelNum, Serializer serializer) {
         if (levelNum != -1) {
             int t = 1;
-            Map<Integer, ArrayList<Pair<Point, Integer>>>
-                    wallMapDict = new HashMap<>();
             for (Level level : serializer.extractLevels()) {
-                wallMapDict.put(t, level.map);
+                if (t == levelNum)
+                    wallList = level.map;
                 t += 1;
             }
         }
