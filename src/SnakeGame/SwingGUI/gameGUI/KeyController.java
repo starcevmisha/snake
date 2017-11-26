@@ -9,7 +9,7 @@ import java.awt.event.KeyEvent;
 public class KeyController extends KeyAdapter {
     private Game game;
 
-    KeyController(Game game) {
+    public KeyController(Game game) {
         this.game = game;
     }
 

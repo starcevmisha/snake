@@ -30,7 +30,7 @@ public class Game {
         wall = new Wall(levelNum, main.seriailizer);
     }
 
-    void oneStep() {
+    public void oneStep() {
         Point head = snake.move(direction);
         Game.isGameOver =
                 (snake.isLoop() || wall.isIntersectWith(head)) && !isJump;

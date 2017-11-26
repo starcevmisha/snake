@@ -24,8 +24,9 @@ public class ButtonLayout extends JPanel {
         startButton.setForeground(Color.green);
         startButton.setOpaque(true);
         startButton.addActionListener(e -> {
-            if (Main.gameThread != null)
+            if (Main.gameThread != null) {
                 Main.gameThread.interrupt();
+            }
             Main.gameThread = new Thread(main);
             Main.gameThread.start();
         });

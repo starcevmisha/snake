@@ -17,7 +17,9 @@ public class Main implements Runnable {
     private static final int Speed = 150;
     public static Thread gameThread = null;
     public Serializer seriailizer = new Serializer();
+    public static Game game;
     public static GUI CurrentGui;
+    public static IGameGui gameWindow;
     public static void main(String[] args) {
 
         Object[] options = {"Swing", "javafx"};
@@ -34,23 +36,20 @@ public class Main implements Runnable {
             new StartSwingMenu(new Main());
         } else {
             CurrentGui = GUI.javafx;
-            Main.gameThread = new Thread(new Main());
-            Main.gameThread.start();
-
+            gameWindow = new GameWindowFx();
+            Application.launch(((GameWindowFx) gameWindow).getClass());
         }
+
     }
 
     public void run() {
-        IGameGui gameWindow;
-        Game game = new Game(this);
+        game = new Game(this);
         if (CurrentGui == GUI.swing) {
             gameWindow = new GameWindowSwing(game);
         } else {
             gameWindow = new GameWindowFx();
-            ((GameWindowFx) gameWindow).Settings(game);
             Application.launch(((GameWindowFx) gameWindow).getClass());
         }
-
 
         while (true) {
             if (!Game.isPaused && !Game.isGameOver)
