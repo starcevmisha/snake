@@ -4,14 +4,10 @@ import SnakeGame.Direction;
 import SnakeGame.Game;
 import SnakeGame.IGameGui;
 import SnakeGame.Main;
-import javafx.animation.Animation;
-import javafx.animation.KeyFrame;
-import javafx.animation.Timeline;
 import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
-import javafx.util.Duration;
 
 public class GameWindowFx extends Application implements IGameGui {
     private Game game;
@@ -77,11 +73,8 @@ public class GameWindowFx extends Application implements IGameGui {
 
         stage.show();
 
-        Timeline timeline = new Timeline(new KeyFrame(
-                Duration.millis(150),
-                ae -> repaint()));
-        timeline.setCycleCount(Animation.INDEFINITE);
-        timeline.play();
+
+        new Timer().tick(this::repaint);
     }
 
 

@@ -1,9 +1,6 @@
 package SnakeGame;
 
-import SnakeGame.models.Food;
-import SnakeGame.models.Snake;
-import SnakeGame.models.SuperFood;
-import SnakeGame.models.Wall;
+import SnakeGame.models.*;
 
 import java.awt.*;
 import java.util.Random;
@@ -15,6 +12,9 @@ public class Game {
     public int score = 0;
     public Snake snake;
     public Food food;
+    public Portal portal;
+    public Boolean isMovingFromPortal;
+
     private Random random = new Random();
     public Wall wall;
     public Direction direction = Direction.Right;
@@ -28,12 +28,27 @@ public class Game {
         food = new Food();
         superFood = new SuperFood();
         wall = new Wall(levelNum, main.seriailizer);
+        portal = new Portal();
     }
 
     public void oneStep() {
         Point head = snake.move(direction);
         Game.isGameOver =
                 (snake.isLoop() || wall.isIntersectWith(head)) && !isJump;
+
+        if (portal.IntersectedWith(head))
+            if (isMovingFromPortal) {
+                if (!snake.AppearFromPortal(portal.point))
+                    isMovingFromPortal = false;
+            } else {
+                snake.RemoveHead();
+                if (snake.getBody().size() == 0) {
+                    // TODO: make animation
+                    isMovingFromPortal = true;
+                } else {
+                    // TODO: block actions
+                }
+            }
 
         if (isJump && jumpTime-- < 0)
             isJump = false;

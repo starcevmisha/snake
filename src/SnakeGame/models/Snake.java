@@ -8,6 +8,7 @@ import java.util.ArrayList;
 
 public class Snake {
     private ArrayList<Point> body = new ArrayList<>();
+    public int initialSize = 1;
 
     public Snake(int x, int y, int length) {
         for (int i = 0; i < length; i++) {
@@ -47,6 +48,7 @@ public class Snake {
 
     public void extend(Point point) {
         body.add(0, point);
+        initialSize = body.size();
     }
 
     public Point move(Direction direction) {
@@ -72,7 +74,23 @@ public class Snake {
         Point head = new Point(x, y);
         body.add(0, head);
         return head;
+    }
 
+    public Boolean AppearFromPortal(Point portal) {
+        if (body.size() < initialSize) {
+            //snake.move(direction);
+            // если хвост змеи прямо в портале, увеличим хвост в соседнюю клетку
+            // после snake.move она встанет на портал
+            if (body.get(body.size() - 1).equals(portal))
+                body.add(new Point(portal.x - 1, portal.y));
+            else body.add(portal);
+            return true;
+        }
+        return false;
+    }
+
+    public void RemoveHead() {
+        body.remove(0);
     }
 }
 
