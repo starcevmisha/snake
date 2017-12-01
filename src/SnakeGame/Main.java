@@ -7,8 +7,6 @@ import SnakeGame.javafxGUI.GameWindowFx;
 import SnakeGame.serial.Serializer;
 import javafx.application.Application;
 
-import javax.swing.*;
-
 public class Main implements Runnable {
     public static final int WIDTH = 20;
     public static final int HEIGHT = 20;
@@ -23,14 +21,15 @@ public class Main implements Runnable {
     public static void main(String[] args) {
 
         Object[] options = {"Swing", "javafx"};
-        int n = JOptionPane.showOptionDialog(null,
-                "Что хотите?",
-                "GUI",
-                JOptionPane.YES_NO_OPTION,
-                JOptionPane.QUESTION_MESSAGE,
-                null,     //do not use a custom Icon
-                options,  //the titles of buttons
-                options[0]);
+//        int n = JOptionPane.showOptionDialog(null,
+//                "Что хотите?",
+//                "GUI",
+//                JOptionPane.YES_NO_OPTION,
+//                JOptionPane.QUESTION_MESSAGE,
+//                null,     //do not use a custom Icon
+//                options,  //the titles of buttons
+//                options[0]);
+        int n = 0;
         if (n == 0) {
             CurrentGui = GUI.swing;
             new StartSwingMenu(new Main());

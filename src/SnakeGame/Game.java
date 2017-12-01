@@ -9,11 +9,11 @@ public class Game {
     public SuperFood superFood;
     public static boolean isGameOver = false;
     public static boolean isPaused = false;
+    public boolean isMovingFromPortal = false;
     public int score = 0;
     public Snake snake;
     public Food food;
     public Portal portal;
-    public Boolean isMovingFromPortal;
 
     private Random random = new Random();
     public Wall wall;
@@ -45,6 +45,8 @@ public class Game {
                 if (snake.getBody().size() == 0) {
                     // TODO: make animation
                     isMovingFromPortal = true;
+                    reset();
+                    return;
                 } else {
                     // TODO: block actions
                 }
@@ -85,6 +87,7 @@ public class Game {
         snake = new Snake(10, 10, Main.snakeLength);
         score = 0;
         newFood();
+        newSuperFood();
         isGameOver = false;
         isPaused = false;
         direction = Direction.Right;

@@ -63,9 +63,9 @@ public class Snake {
         x += shiftX;
         y += shiftY;
 
-        if (x == (int) body.get(1).getX() && y == (int) body.get(1).getY()) {
-            return body.get(0);
-        }
+//        if (x == (int) body.get(1).getX() && y == (int) body.get(1).getY()) {
+//            return body.get(0);
+//        }
 
         x = (x >= Main.WIDTH) ? 0 : ((x <= -1) ? Main.WIDTH - 1 : x);
         y = (y >= Main.HEIGHT) ? 0 : ((y <= -1) ? Main.HEIGHT - 1 : y);

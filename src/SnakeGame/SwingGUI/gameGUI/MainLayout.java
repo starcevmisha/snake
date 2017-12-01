@@ -33,6 +33,9 @@ public class MainLayout extends JPanel {
         for (Pair<Point, Integer> pair : game.wall.getWallMap()) {
             paintPoint(canvas, pair.getLeft(), Color.DARK_GRAY);
         }
+
+        paintPoint(canvas, game.portal.point, Color.WHITE);
+
         if (game.food.type == 1)
             paintPoint(canvas, game.food, Color.magenta);
         else if (game.food.type == 2)
