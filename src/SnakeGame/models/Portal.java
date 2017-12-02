@@ -11,7 +11,7 @@ public class Portal {
 
     public Portal() {
         System.out.println(random.nextInt(Main.WIDTH));
-        point = new Point(10, 10);
+        point = new Point(5, 10);
 //                random.nextInt(Main.WIDTH),
 //                random.nextInt(Main.HEIGHT));
     }

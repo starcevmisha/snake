@@ -15,6 +15,8 @@ public class KeyController extends KeyAdapter {
 
     @Override
     public void keyPressed(KeyEvent event) {
+        if (Game.blockAction)
+            return;
         switch (event.getKeyCode()) {
             case KeyEvent.VK_W:
             case KeyEvent.VK_UP:

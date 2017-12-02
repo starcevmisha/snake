@@ -8,10 +8,11 @@ import java.util.ArrayList;
 
 public class Snake {
     private ArrayList<Point> body = new ArrayList<>();
-    public int initialSize = 1;
+    public int initialSize = 5;
 
     public Snake(int x, int y, int length) {
-        for (int i = 0; i < length; i++) {
+        initialSize = length;
+        for (int i = 0; i < 1; i++) {
             Point point = new Point(x - i, y);
             body.add(point);
         }
@@ -49,6 +50,13 @@ public class Snake {
     public void extend(Point point) {
         body.add(0, point);
         initialSize = body.size();
+    }
+
+    public void growUp() {
+        if (body.size() <= initialSize) {
+            body.add(0, body.get(0));
+        }
+
     }
 
     public Point move(Direction direction) {

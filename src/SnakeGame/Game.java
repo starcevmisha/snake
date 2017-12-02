@@ -6,10 +6,12 @@ import java.awt.*;
 import java.util.Random;
 
 public class Game {
+    public static boolean blockAction = false;
     public SuperFood superFood;
     public static boolean isGameOver = false;
     public static boolean isPaused = false;
-    public boolean isMovingFromPortal = false;
+    private final Main main;
+    public boolean isMovingFromPortal = true;
     public int score = 0;
     public Snake snake;
     public Food food;
@@ -24,33 +26,45 @@ public class Game {
     private static int jumpTime = 2;
 
     public Game(Main main) {
-        snake = new Snake(10, 10, Main.snakeLength);
+        this.main = main;
+        portal = new Portal();
+        snake = new Snake((int) portal.point.getX(), (int) portal.point.getY(), Main.snakeLength);
         food = new Food();
         superFood = new SuperFood();
         wall = new Wall(levelNum, main.seriailizer);
-        portal = new Portal();
     }
 
     public void oneStep() {
+//        if (portal.IntersectedWith(snake.getBody().get(0)))
+        if (isMovingFromPortal) {
+            if (!snake.AppearFromPortal(portal.point))
+                isMovingFromPortal = false;
+            else {
+                snake.growUp();
+            }
+        } else if (portal.IntersectedWith(snake.getBody().get(0))) {
+            snake.RemoveHead();
+            if (snake.getBody().size() == 0) {
+                // TODO: make animation
+                wall = new Wall((levelNum++) % 3 + 1, main.seriailizer);
+                newFood();
+                newSuperFood();
+                isMovingFromPortal = true;
+                blockAction = false;
+                reset();
+                return;
+            } else {
+                blockAction = true;
+                // TODO: block actions
+            }
+        }
+
+
         Point head = snake.move(direction);
         Game.isGameOver =
                 (snake.isLoop() || wall.isIntersectWith(head)) && !isJump;
 
-        if (portal.IntersectedWith(head))
-            if (isMovingFromPortal) {
-                if (!snake.AppearFromPortal(portal.point))
-                    isMovingFromPortal = false;
-            } else {
-                snake.RemoveHead();
-                if (snake.getBody().size() == 0) {
-                    // TODO: make animation
-                    isMovingFromPortal = true;
-                    reset();
-                    return;
-                } else {
-                    // TODO: block actions
-                }
-            }
+
 
         if (isJump && jumpTime-- < 0)
             isJump = false;
@@ -84,7 +98,7 @@ public class Game {
     }
 
     public void reset() {
-        snake = new Snake(10, 10, Main.snakeLength);
+        snake = new Snake((int) portal.point.getX(), (int) portal.point.getY(), snake.initialSize);
         score = 0;
         newFood();
         newSuperFood();
