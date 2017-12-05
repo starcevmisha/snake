@@ -28,8 +28,18 @@ public class MainLayout extends JPanel {
     @Override
     public void paint(Graphics canvas) {
         super.paint(canvas);
-        drawGrid(canvas);
 
+
+        if (game.isInPortal) {
+            //Если внутри портала
+            Image icon = new ImageIcon(this.getClass().getResource(
+                    "giphy.gif")).getImage();
+            canvas.drawImage(icon, 0, 0, this);
+
+            return;
+        }
+
+        drawGrid(canvas);
         for (Pair<Point, Integer> pair : game.wall.getWallMap()) {
             paintPoint(canvas, pair.getLeft(), Color.DARK_GRAY);
         }
@@ -95,4 +105,5 @@ public class MainLayout extends JPanel {
                 0, 360);
 
     }
+
 }

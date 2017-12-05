@@ -10,8 +10,10 @@ public class Game {
     public SuperFood superFood;
     public static boolean isGameOver = false;
     public static boolean isPaused = false;
-    private final Main main;
     public boolean isMovingFromPortal = true;
+
+    private final Main main;
+    public boolean isInPortal = false;
     public int score = 0;
     public Snake snake;
     public Food food;
@@ -35,6 +37,18 @@ public class Game {
     }
 
     public void oneStep() {
+        if (isInPortal) {
+            //Если внутри портала, то поток стопарится и в потоке графики
+            // показывается гифка с перемещением.
+            // после завершения sleep продолжаем работу.
+            // гифка отображается в SwingGui.gameGui.MainLayout
+            try {
+                Thread.sleep(2500);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+            isInPortal = false;
+        }
         if (isMovingFromPortal) {
             if (!snake.AppearFromPortal(portal.point))
                 isMovingFromPortal = false;
@@ -43,8 +57,12 @@ public class Game {
 //            }
         } else if (portal.isInersectWith(snake.getBody().get(0))) {
             snake.RemoveHead();
+            // TODO: make animations
+
             if (snake.getBody().size() == 0) {
-                // TODO: make animation
+                //Если зашли в портал, то ставим флаг и загружаем уровень.
+                isInPortal = true;
+
 
                 wall = new Wall((levelNum++) % 3 + 1, main.seriailizer);
                 newFood();
@@ -55,7 +73,6 @@ public class Game {
                 return;
             } else {
                 blockAction = true;
-                // TODO: block actions
             }
         }
 
