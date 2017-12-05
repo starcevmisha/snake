@@ -27,6 +27,8 @@ public class Game {
     private static boolean isJump = true;
     private static int jumpTime = 2;
 
+    public int levelCount;
+
     public Game(Main main) {
         this.main = main;
         portal = new Portal();
@@ -34,6 +36,7 @@ public class Game {
         food = new Food();
         superFood = new SuperFood();
         wall = new Wall(levelNum, main.seriailizer);
+        levelCount = main.seriailizer.extractLevels().size();
     }
 
     public void oneStep() {
@@ -64,7 +67,7 @@ public class Game {
                 isInPortal = true;
 
 
-                wall = new Wall((levelNum++) % 3 + 1, main.seriailizer);
+                wall = new Wall((levelNum++) % levelCount + 1, main.seriailizer);
                 newFood();
                 newSuperFood();
                 isMovingFromPortal = true;
