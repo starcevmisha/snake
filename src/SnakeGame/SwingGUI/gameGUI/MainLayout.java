@@ -52,7 +52,9 @@ public class MainLayout extends JPanel {
             paintPoint(canvas, game.superFood,
                     superFoodColor[abs(random.nextInt()) % 4]);
 
-        paintCircle(canvas, game.snake.getBody().get(0), Color.black);
+        if (game.snake.initialSize == game.snake.getBody().size()
+                || game.isMovingFromPortal)
+            paintCircle(canvas, game.snake.getBody().get(0), Color.black);
 
         if (Game.isGameOver) {
             canvas.setColor(Color.red);

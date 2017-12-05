@@ -35,17 +35,17 @@ public class Game {
     }
 
     public void oneStep() {
-//        if (portal.IntersectedWith(snake.getBody().get(0)))
         if (isMovingFromPortal) {
             if (!snake.AppearFromPortal(portal.point))
                 isMovingFromPortal = false;
-            else {
-                snake.growUp();
-            }
-        } else if (portal.IntersectedWith(snake.getBody().get(0))) {
+//            else {
+//                snake.growUp();
+//            }
+        } else if (portal.isInersectWith(snake.getBody().get(0))) {
             snake.RemoveHead();
             if (snake.getBody().size() == 0) {
                 // TODO: make animation
+
                 wall = new Wall((levelNum++) % 3 + 1, main.seriailizer);
                 newFood();
                 newSuperFood();
@@ -109,13 +109,15 @@ public class Game {
 
     private void newFood() {
         while (snake.isIntersectWith(food)
-                || wall.isIntersectWith(food))
+                || wall.isIntersectWith(food)
+                || portal.isInersectWith(food))
             food.nextFood();
     }
 
     private void newSuperFood() {
         while (snake.isIntersectWith(superFood)
-                || wall.isIntersectWith(superFood))
+                || wall.isIntersectWith(superFood)
+                || portal.isInersectWith(food))
             superFood.nextFood();
     }
 }

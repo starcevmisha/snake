@@ -16,7 +16,8 @@ public class Portal {
 //                random.nextInt(Main.HEIGHT));
     }
 
-    public boolean IntersectedWith(Point other) {
+    public boolean isInersectWith
+            (Point other) {
         return point.equals(other);
     }
 }
